@@ -40,7 +40,7 @@ app.use(
 // escuta a porta do servidor node.js
 
 app.listen(
-  3000,
+  process.env.PORT || 3000,
   () => {
     console.log('Iniciado')
   }
