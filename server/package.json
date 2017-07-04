@@ -1,0 +1,32 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Backend Challenge",
+  "main": "server.js",
+  "scripts": {
+    "test": "standard && NODE_ENV=test;PORT=4001 jest --coverage",
+    "test:watch": "jest --watch",
+    "start": "node server.js",
+    "dev": "NODE_ENV=development;PORT=4000 node server.js"
+  },
+  "author": "lucassrod@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "joi": "^10.6.0",
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-logger": "^3.0.1",
+    "koa-router": "^7.2.1",
+    "mongoose-paginate": "^5.0.3"
+  },
+  "devDependencies": {
+    "babel-jest": "^20.0.3",
+    "jest": "^20.0.4",
+    "jest-cli": "^20.0.4",
+    "koa-body": "^2.3.0",
+    "koa-router": "^7.2.1",
+    "mongoose": "^4.11.1",
+    "standard": "^10.0.2"
+  }
+}
