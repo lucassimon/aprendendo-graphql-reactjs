@@ -34,7 +34,7 @@ exports.add = async (ctx, next) => {
   ctx.body = {
     'resource': 'Usuários',
     'message': 'Adicionar usuário',
-    // 'data': user
+    'data': user
   }
 }
 
