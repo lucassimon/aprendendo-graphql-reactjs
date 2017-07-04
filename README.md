@@ -9,9 +9,13 @@ Entrar no diretório do servidor
 
 ### Configurações
 
-Configurar os dados para banco de dados e variaveis de ambiente
+Configurar os dados para banco de dados e variaveis de ambiente.
 
-`source .env`
+Copiar o arquivo `.env.example` para `.env`
+
+Edite o arquivo e adicione as valores correspondentes. Exemplo o `DATABASE_URL=mongodb://localhost:27017/courses`
+
+Em seguida execute: `source .env`
 
 ### Executar servidor de desenvolvimento
 
