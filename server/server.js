@@ -3,6 +3,7 @@ let Router = require('koa-router')
 let Koa = require('koa')
 let bodyParser = require('koa-bodyparser')
 let app = module.exports = new Koa()
+let db = require('./configs/db')
 let courses = require('./courses/urls')
 let users = require('./users/urls.js')
 
@@ -19,7 +20,9 @@ home.use(async (ctx, next) => {
 
 // Cria a rota para a raiz da API
 home.get('/', async (ctx, next) => {
-  ctx.body = "hello world"
+  ctx.body = {
+    'resource': 'Home'
+  }
 })
 
 // Utiliza as rotas
@@ -43,5 +46,12 @@ app.listen(
   process.env.PORT || 3000,
   () => {
     console.log('Iniciado')
+    console.log(process.env.DATABASE_URL)
+
+    db.once('open', function() {
+      console.log('Mongoose iniciado')
+    })
+
+    db.on('error', console.error);
   }
 )
