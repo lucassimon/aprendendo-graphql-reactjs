@@ -12,21 +12,26 @@ exports.find = async (ctx, next) => {
   // todo: gerar retorno do contexto dentro do bloco catch retornando a api
   // com erro
 
-  let users =  await User.find({}).select({password:0}).exec().then(
+  await User.find({}).select({password:0}).exec().then(
     (results) => {
-      return results
+      ctx.body = {
+        'resource': 'Usuários',
+        'success': true,
+        'message': 'Lista todos os usuários',
+        'data': results
+      }
     }
   ).catch(
     (error) => {
-      console.log(error)
+      ctx.body = {
+        'resource': 'Usuários',
+        'success': false,
+        'message': error,
+        'data': []
+      }
     }
   )
 
-  ctx.body = {
-    'resource': 'Usuários',
-    'message': 'Lista todos os usuários',
-    'data': users
-  }
 }
 
 exports.find_id = async (ctx, next) => {
