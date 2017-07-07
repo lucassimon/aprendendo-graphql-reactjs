@@ -35,10 +35,40 @@ exports.find = async (ctx, next) => {
 }
 
 exports.find_id = async (ctx, next) => {
-  ctx.body = {
-    'resource': 'Usuários',
-    'message': 'Detalhes do usuário'
+
+  console.log(ctx.request.params)
+
+  let id = ctx.request.params
+
+  if (!id) {
+    return ctx.body = {
+      'resource': 'Usuários',
+      'message': 'Não foi encontrado um ID válido',
+      'success': false,
+      'data': []
+    }
   }
+
+  await User.findOne({_id: id}).select({password:0}).exec().then(
+    (results) => {
+      ctx.body = {
+        'resource': 'Usuários',
+        'success': true,
+        'message': 'Lista todos os usuários',
+        'data': results
+      }
+    }
+  ).catch(
+    (error) => {
+      ctx.body = {
+        'resource': 'Usuários',
+        'success': false,
+        'message': error,
+        'data': []
+      }
+    }
+  )
+
 }
 
 exports.find_per_page = async (ctx, next) => {
