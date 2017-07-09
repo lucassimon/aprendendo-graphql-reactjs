@@ -21,9 +21,21 @@ Em seguida execute: `source .env`
 
 Executar o comando `npm run dev`
 
-### Testes para cadastros via API
+### Recursos
+
+* Auth
+
+Login na API utilizando JWT
+
+* Users
+
+CRUD de usuários via API
 
 `$ http -v -f POST http://localhost:3000/users/ name="Lucas" email="lucassrod@gmail.com" password="lucas"`
+
+* Courses
+
+CRUD de cursos via GRAPHQL
 
 ### Testes
 
