@@ -1,4 +1,4 @@
-
+let mongoose = require('mongoose')
 let User = require('./model')
 
 exports.find = async (ctx, next) => {
@@ -36,11 +36,10 @@ exports.find = async (ctx, next) => {
 
 exports.find_id = async (ctx, next) => {
 
-  console.log(ctx.request.params)
-
-  let id = ctx.request.params
+  let id = ctx.params.id || null
 
   if (!id) {
+    ctx.status = 404
     return ctx.body = {
       'resource': 'Usuários',
       'message': 'Não foi encontrado um ID válido',
@@ -49,7 +48,17 @@ exports.find_id = async (ctx, next) => {
     }
   }
 
-  await User.findOne({_id: id}).select({password:0}).exec().then(
+  if (!mongoose.Types.ObjectId.isValid(ctx.params.id)) {
+    ctx.status = 404
+    return ctx.body = {
+      'resource': 'Usuários',
+      'success': false,
+      'message': 'Id do usuário inválido',
+      'data': []
+    }
+  }
+
+  await User.findOne({_id: id}).select({password:0}).then(
     (results) => {
       ctx.body = {
         'resource': 'Usuários',
@@ -73,11 +82,38 @@ exports.find_id = async (ctx, next) => {
 
 exports.find_per_page = async (ctx, next) => {
 
-  ctx.body = {
-    'resource': 'Usuários',
-    'message': 'Lista os usuários paginados'
+  let per_page = ctx.query.per_page || 10
+  let page = ctx.params.page || 1
+  let options = {
+    select: {password: 0},
+    lean: true,
+    page: page,
+    limit: per_page
   }
 
+  await User.paginate({}, options).then(
+
+    (users) => {
+      ctx.body = {
+        'resource': 'Usuários',
+        'message': 'Lista os usuários paginados',
+        'success': true,
+        'total': users.total,
+        'page': parseInt(users.page),
+        'pages': users.pages,
+        'data': users.docs
+      }
+    }
+  ).catch(
+    (error) => {
+      ctx.body = {
+        'resource': 'Usuários',
+        'success': false,
+        'message': error,
+        'data': []
+      }
+    }
+  )
 }
 
 exports.add = async (ctx, next) => {
@@ -94,13 +130,31 @@ exports.add = async (ctx, next) => {
 }
 
 exports.update_by_id = async (ctx, next) => {
+
+  let user = await User
+    .findByIdAndUpdate(ctx.params.id, ctx.request.body)
+
+  if (!user) {
+    return ctx.status = 404
+  }
+
+  ctx.status = 204
   ctx.body = {
     'resource': 'Usuários',
-    'message': 'Atualizar o usuário'
+    'message': 'Atualizar o usuário',
+    'data': user
   }
 }
 
 exports.delete_by_id = async (ctx, next) => {
+  let user = await User
+    .findByIdAndRemove(ctx.params.id)
+
+  if (!user) {
+    return ctx.status = 404
+  }
+
+  ctx.status = 204
   ctx.body = {
     'resource': 'Usuários',
     'message': 'Deletar usuário'
