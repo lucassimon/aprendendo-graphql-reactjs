@@ -24,21 +24,21 @@ exports.find_by_id = async (root, params) => {
 }
 
 
-exports.all = async (root, params) => {
+exports.add = async (root, params) => {
 
   let cModel = new Course(params.data)
 
   let newCourse = await cModel.save()
 
   if (!newCourse) {
-    throw new Error('Erro add the course')
+    throw new Error('Error at add the course')
   }
 
   return newCourse
 }
 
 
-exports.all = async (root, params) => {
+exports.remove = async (root, params) => {
 
   let id = params.id || null
 
@@ -51,4 +51,10 @@ exports.all = async (root, params) => {
   }
 
   let removeCourse = await Course.findByIdAndRemove(params.id).exec()
+
+  if (!removeCourse) {
+    throw new Error('Is not possible remove that course')
+  }
+
+  return removeCourse
 }
