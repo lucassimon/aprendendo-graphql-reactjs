@@ -11,6 +11,12 @@ Tive de criar um endpoint de cadastro através de REST pois estou aprendento com
 
 ## Duvidas
 
+* Como que faço paginação de resultados?
+
+* Como faço para proteger a rota do graphql com autenticação JWT?
+
+* Como faço para ter um root Query contendo o schema da app de cursos e depois de usuários?
+
 ## Tutorials
 
 Tutoriais usados para aprendizado ao graphql.
