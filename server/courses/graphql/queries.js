@@ -2,7 +2,7 @@
 
 let graphql = require('graphql')
 let Course = require('../model')
-let courseType = require('./types')
+let courseType = require('./types').CourseType
 let resolvers = require('./resolvers')
 
 let courses = {
