@@ -15,7 +15,7 @@
     "bcrypt": "^1.0.2",
     "bluebird": "^3.5.0",
     "dotenv": "^4.0.0",
-    "graphql": "^0.10.3",
+    "graphql": "^0.10.5",
     "graphql-server-koa": "^1.0.0",
     "joi": "^10.6.0",
     "koa": "^2.3.0",
