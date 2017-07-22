@@ -1,17 +1,19 @@
 'use strict'
 
 let graphql = require('graphql')
-let courseType = require('../types')
+let courseType = require('../types').CourseType
 let resolvers = require('../resolvers')
 
-let courses = {
+let RemoveCourse = {
   type: courseType,
-  description: "Get Course by Id",
+  description: "Delete Course by Id",
   args: {
-    data: {
-      name: 'Data',
+    id: {
+      name: 'Object Id',
       type: new graphql.GraphQLNonNull(graphql.GraphQLID)
     }
   },
   resolve: resolvers.remove
 }
+
+module.exports = RemoveCourse
