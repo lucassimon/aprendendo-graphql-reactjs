@@ -68,6 +68,8 @@ Tutoriais usados para aprendizado ao graphql.
 
 * [Introdução ao Graphql](https://medium.com/tableless/introdu%C3%A7%C3%A3o-ao-graphql-com-node-js-1106c17b9b97)
 
+* [Build a simple graphql server](https://scotch.io/@orinami/build-a-simple-graphql-api-server-with-express-and-nodejs#toc-prerequisite)
+
 ### Apollo Introduction
 
 * [Spin AtomicObject Part 1](https://spin.atomicobject.com/2017/03/29/graphql-apollo-introduction/)
