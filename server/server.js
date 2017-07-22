@@ -10,7 +10,7 @@ let users = require('./users/urls.js')
 // GraphQL
 let graphQL = require('graphql-server-koa').graphqlKoa
 let graphiQL = require('graphql-server-koa').graphiqlKoa
-let courseSchema = require('./courses/schema')
+let courseSchema = require('./courses/graphql/schema')
 
 
 app.use(logger())
