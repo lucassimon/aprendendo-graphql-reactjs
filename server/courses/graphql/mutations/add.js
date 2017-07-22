@@ -1,17 +1,20 @@
 'use strict'
 
 let graphql = require('graphql')
-let courseType = require('../types')
+let courseType = require('../types').CourseType
+let courseInputType = require('../types').CourseInputType
 let resolvers = require('../resolvers')
 
-let courses = {
+let AddCourses = {
   type: courseType,
   description: "Add a new Course",
   args: {
-    id: {
-      name: 'id',
-      type: new graphql.GraphQLNonNull(courseType)
+    data: {
+      name: 'Data',
+      type: new graphql.GraphQLNonNull(courseInputType)
     }
   },
   resolve: resolvers.add
 }
+
+module.exports = AddCourses
