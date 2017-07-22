@@ -10,6 +10,9 @@ let courses = Router({
 courses.get(
   '/',
   Controller.find
+).post(
+  '/',
+  Controller.add
 )
 
 module.exports = courses
