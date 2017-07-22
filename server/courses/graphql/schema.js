@@ -1,7 +1,9 @@
 let graphql = require('graphql')
 
-let courseType = require('./types')
+
 let { CourseById, CourseAll } = require('./queries')
+let addCourse = require('./mutations/add')
+let removeCourse = require('./mutations/remove')
 
 let schema = new graphql.GraphQLSchema({
   query: new graphql.GraphQLObjectType({
@@ -9,6 +11,13 @@ let schema = new graphql.GraphQLSchema({
     fields: {
       courses: CourseAll,
       course: CourseById
+    }
+  }),
+  mutation: new graphql.GraphQLObjectType({
+    name: 'CourseMutation',
+    fields: {
+      AddCourse: addCourse,
+      RemoveCourse: removeCourse
     }
   })
 })
