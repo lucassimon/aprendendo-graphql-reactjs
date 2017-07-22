@@ -17,7 +17,44 @@ Tive de criar um endpoint de cadastro através de REST pois estou aprendento com
 
 * Como faço para ter um root Query contendo o schema da app de cursos e depois de usuários?
 
+* Posso ter vários root Query um para cada recurso do meu sistema? Como apelidar essa root query? cquery: CourseQuery, uquery: UserQuery
+
 * Subscriptions? Não entendi o conceito nem como implementa-lo.
+
+## Dados para teste
+
+Criando um curso via endpoint.
+
+`http -v -f POST http://localhost:4000/courses/ university="UniBH" campus="Cristiano Machado" category="Engenharia e Tecnologia" name="Sistemas de Informação" duration="08 semestres" modality="Graduação"`
+
+Buscando todos os cursos
+
+```
+query {
+  courses {
+    id,
+    name,
+    university,
+    campus,
+    duration
+  }
+}
+```
+
+
+Buscando um curso
+
+```
+query {
+  course(id:"597383642422e50fa28b83b6"){
+    id,
+    name,
+    university,
+    campus,
+    duration
+  }
+}
+```
 
 ## Tutorials
 
