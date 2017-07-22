@@ -2,14 +2,14 @@
 
 App de cursos para ser utilizado como exercicio de aprendizado do GRAPHQL. Primeiro estou fazendo com o apollo e is types, queries e definições estou usando o pacote do `graphql-js`
 
-Hoje 22/07/2017 consegui fazer a busca na base de dados do mongoose as queries, tipos, resolvers e mutations.
+Hoje 22/07/2017 consegui fazer a busca na base de dados do mongoose as queries, tipos, resolvers e mutations. [Melhor Tutorial Prático](https://www.youtube.com/playlist?list=PL5M9r-aWV-kolt6qNlICdpF-Ofv8cazDl)
 
 Entendi que os resolvers são como nossos controllers ou metodos para busca de dados e que também pode ser usado para criar algum tipo de lógica ou tratamento desses dados.
 
 Tive de criar um endpoint de cadastro através de REST pois estou aprendento como realiza as mutações.
 
 
-## Duvidas
+## Dúvidas
 
 * Como que faço paginação de resultados?
 
@@ -17,9 +17,13 @@ Tive de criar um endpoint de cadastro através de REST pois estou aprendento com
 
 * Como faço para ter um root Query contendo o schema da app de cursos e depois de usuários?
 
+* Subscriptions? Não entendi o conceito nem como implementa-lo.
+
 ## Tutorials
 
 Tutoriais usados para aprendizado ao graphql.
+
+* [Melhor Tutorial Prático](https://www.youtube.com/playlist?list=PL5M9r-aWV-kolt6qNlICdpF-Ofv8cazDl)
 
 * [DOC](http://dev.apollodata.com/tools/graphql-server/setup.html)
 
