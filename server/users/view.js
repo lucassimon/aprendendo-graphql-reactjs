@@ -2,7 +2,6 @@ let mongoose = require('mongoose')
 let User = require('./model')
 
 exports.find = async (ctx, next) => {
-
   // Não entendi uma coisa no meu db.js quando coloco promiseLibrary para
   // bluebird não consigo realizar a pesquisa no mongo gerando timeout.
   // por conta disso estou utilizando o padrão do mongoose
@@ -12,7 +11,7 @@ exports.find = async (ctx, next) => {
   // todo: gerar retorno do contexto dentro do bloco catch retornando a api
   // com erro
 
-  await User.find({}).select({password:0}).exec().then(
+  await User.find({}).select({password: 0}).exec().then(
     (results) => {
       ctx.body = {
         'resource': 'Usuários',
@@ -31,16 +30,14 @@ exports.find = async (ctx, next) => {
       }
     }
   )
-
 }
 
 exports.find_id = async (ctx, next) => {
-
   let id = ctx.params.id || null
 
   if (!id) {
     ctx.status = 404
-    return ctx.body = {
+    ctx.body = {
       'resource': 'Usuários',
       'message': 'Não foi encontrado um ID válido',
       'success': false,
@@ -50,7 +47,7 @@ exports.find_id = async (ctx, next) => {
 
   if (!mongoose.Types.ObjectId.isValid(ctx.params.id)) {
     ctx.status = 404
-    return ctx.body = {
+    ctx.body = {
       'resource': 'Usuários',
       'success': false,
       'message': 'Id do usuário inválido',
@@ -58,7 +55,7 @@ exports.find_id = async (ctx, next) => {
     }
   }
 
-  await User.findOne({_id: id}).select({password:0}).then(
+  await User.findOne({_id: id}).select({password: 0}).then(
     (results) => {
       ctx.body = {
         'resource': 'Usuários',
@@ -77,18 +74,16 @@ exports.find_id = async (ctx, next) => {
       }
     }
   )
-
 }
 
 exports.find_per_page = async (ctx, next) => {
-
-  let per_page = ctx.query.per_page || 10
+  let perPage = ctx.query.per_page || 10
   let page = ctx.params.page || 1
   let options = {
     select: {password: 0},
     lean: true,
     page: page,
-    limit: per_page
+    limit: perPage
   }
 
   await User.paginate({}, options).then(
@@ -117,7 +112,6 @@ exports.find_per_page = async (ctx, next) => {
 }
 
 exports.add = async (ctx, next) => {
-
   let user = new User(ctx.request.body)
 
   await user.save()
@@ -130,15 +124,15 @@ exports.add = async (ctx, next) => {
 }
 
 exports.update_by_id = async (ctx, next) => {
-
   let user = await User
     .findByIdAndUpdate(ctx.params.id, ctx.request.body)
 
+  ctx.status = 204
+
   if (!user) {
-    return ctx.status = 404
+    ctx.status = 404
   }
 
-  ctx.status = 204
   ctx.body = {
     'resource': 'Usuários',
     'message': 'Atualizar o usuário',
@@ -150,11 +144,12 @@ exports.delete_by_id = async (ctx, next) => {
   let user = await User
     .findByIdAndRemove(ctx.params.id)
 
+  ctx.status = 204
+
   if (!user) {
-    return ctx.status = 404
+    ctx.status = 404
   }
 
-  ctx.status = 204
   ctx.body = {
     'resource': 'Usuários',
     'message': 'Deletar usuário'

@@ -1,5 +1,6 @@
-let graphql = require('graphql')
+'use strict'
 
+let graphql = require('graphql')
 
 let { CourseById, CourseAll } = require('./queries')
 let addCourse = require('./mutations/add')

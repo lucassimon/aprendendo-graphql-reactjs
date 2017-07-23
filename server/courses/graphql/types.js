@@ -2,10 +2,8 @@
 
 let graphql = require('graphql')
 
-//  Definição dos modelo de curso
-//
 let courseType = new graphql.GraphQLObjectType({
-  name:'Course',
+  name: 'Course',
   description: 'Course Model',
   fields: {
     id: {
@@ -75,7 +73,7 @@ let courseInputType = new graphql.GraphQLInputObjectType({
     modality: {
       type: new graphql.GraphQLNonNull(graphql.GraphQLString),
       description: 'The modality. Eg. Master degree'
-    },
+    }
   })
 })
 

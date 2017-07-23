@@ -4,20 +4,18 @@ let mongoose = require('mongoose')
 let Course = require('../model')
 
 exports.all = async (root, params) => {
-
   return Course.find({}).exec()
 }
 
 exports.find_by_id = async (root, params) => {
-
   let id = params.id || null
 
   if (!id) {
-    return null
+    throw new Error('Id is required')
   }
 
   if (!mongoose.Types.ObjectId.isValid(params.id)) {
-    null
+    throw new Error('This Id is a not valid ObjectId')
   }
 
   return Course.findOne({_id: params.id}).exec()
@@ -25,7 +23,6 @@ exports.find_by_id = async (root, params) => {
 
 
 exports.add = async (root, params) => {
-
   let cModel = new Course(params.data)
 
   let newCourse = await cModel.save()
@@ -39,7 +36,6 @@ exports.add = async (root, params) => {
 
 
 exports.remove = async (root, params) => {
-
   let id = params.id || null
 
   if (!id) {

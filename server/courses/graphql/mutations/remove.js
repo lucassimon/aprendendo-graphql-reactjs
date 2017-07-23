@@ -6,7 +6,7 @@ let resolvers = require('../resolvers')
 
 let RemoveCourse = {
   type: courseType,
-  description: "Delete Course by Id",
+  description: 'Delete Course by Id',
   args: {
     id: {
       name: 'Object Id',

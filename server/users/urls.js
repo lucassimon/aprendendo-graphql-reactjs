@@ -1,3 +1,5 @@
+'use strict'
+
 let Router = require('koa-router')
 let Controller = require('./view')
 

@@ -6,7 +6,7 @@ let resolvers = require('../resolvers')
 
 let UpdateCourse = {
   type: courseType,
-  description: "Add a new Course",
+  description: 'Add a new Course',
   args: {
     id: {
       name: 'Object Id',

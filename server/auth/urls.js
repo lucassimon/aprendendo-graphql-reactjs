@@ -2,8 +2,6 @@
 
 let Router = require('koa-router')
 
-
-
 let auth = Router({
   prefix: '/auth/'
 })

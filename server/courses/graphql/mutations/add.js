@@ -7,7 +7,7 @@ let resolvers = require('../resolvers')
 
 let AddCourses = {
   type: courseType,
-  description: "Add a new Course",
+  description: 'Add a new Course',
   args: {
     data: {
       name: 'Data',
