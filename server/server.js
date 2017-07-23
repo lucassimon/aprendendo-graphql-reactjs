@@ -12,7 +12,6 @@ let graphQL = require('graphql-server-koa').graphqlKoa
 let graphiQL = require('graphql-server-koa').graphiqlKoa
 let courseSchema = require('./courses/graphql/schema')
 
-
 app.use(logger())
 app.use(bodyParser())
 
@@ -60,18 +59,21 @@ app.use(
   users.allowedMethods()
 )
 
-// escuta a porta do servidor node.js
+if (process.env === 'test') {
+  module.exports = app
+} else {
 
-app.listen(
-  process.env.PORT || 3000,
-  () => {
-    console.log('Iniciado')
-    console.log(process.env.DATABASE_URL)
+  // escuta a porta do servidor node.js
 
-    db.once('open', function() {
-      console.log('Mongoose iniciado')
-    })
+  app.listen(
+    process.env.PORT,
+    () => {
 
-    db.on('error', console.error);
-  }
-)
+      db.once('open', function () {
+        console.log('Mongoose iniciado')
+      })
+
+      db.on('error', console.error)
+    }
+  )
+}
