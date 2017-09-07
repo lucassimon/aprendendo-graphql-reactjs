@@ -6,6 +6,7 @@ let app = module.exports = new Koa()
 let db = require('./configs/db')
 let courses = require('./courses/urls')
 let users = require('./users/urls.js')
+let commissioning = require('./commissioning/urls.js')
 
 // GraphQL
 let graphQL = require('graphql-server-koa').graphqlKoa
@@ -57,6 +58,10 @@ app.use(
   users.routes()
 ).use(
   users.allowedMethods()
+).use(
+  commissioning.routes()
+).use(
+  commissioning.allowedMethods()
 )
 
 if (process.env === 'test') {
