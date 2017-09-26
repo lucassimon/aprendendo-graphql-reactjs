@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import NavigationTop from './NavigationTop'
+import React from 'react';
+
 
 const Hero = (props) => {
 
