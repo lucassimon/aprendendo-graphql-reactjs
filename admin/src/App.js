@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
 import './statics/css/bulma.css';
 import Header from './components/Header'
 import Main from './containers/Main'
