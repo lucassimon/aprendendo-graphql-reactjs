@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import Hero from '../components/Hero'
 
 const Courses = () => {
   return (
     <div>
-      <h1> Seção de cursos </h1>
+      <Hero title="Cursos" subtitle="Listagem de cursos" />
     </div>
   )
 }
