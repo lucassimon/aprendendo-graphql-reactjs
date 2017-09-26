@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Hero from '../components/Hero'
 
 class Users extends Component {
 
@@ -9,7 +10,7 @@ class Users extends Component {
   render() {
     return (
       <div>
-        <h1> Seção de usuários </h1>
+        <Hero title="Usuários" subtitle="Nossos usuários" />
       </div>
     )
   }
