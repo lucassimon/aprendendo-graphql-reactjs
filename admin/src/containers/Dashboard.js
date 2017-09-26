@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 
-const Home = () => {
+import Hero from '../components/Hero'
+
+const Dashboard = () => {
   return (
     <div>
-      <h1> Bem vindos ao meu dashboard </h1>
+        <Hero title="Dashboard" subtitle="Área principal" />
     </div>
   )
 }
 
-export default Home
+export default Dashboard
