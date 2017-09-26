@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Hero from '../components/Hero'
 
-const Courses = () => {
+
+const Courses = (match) => {
   return (
     <div>
-      <Hero title="Cursos" subtitle="Listagem de cursos" />
+        <Hero title="Cursos" subtitle="Listagem de cursos" />
     </div>
   )
 }
