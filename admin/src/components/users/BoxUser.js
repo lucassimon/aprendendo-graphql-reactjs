@@ -8,8 +8,7 @@ const BoxUser = (props) => {
       <article className="media">
         <div className="media-content">
           <div className="content">
-            <p>
-              <strong>{props.email}</strong>
+              <strong>{props.name}, {props.email} </strong>
               <br />
               <div className="field is-grouped">
               {
@@ -57,7 +56,7 @@ const BoxUser = (props) => {
                 </p>
               }
               </div>
-            </p>
+
           </div>
         </div>
         <div className="media-right">
