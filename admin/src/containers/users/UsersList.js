@@ -13,8 +13,15 @@ class UserList extends Component {
 
     this.state = {
       name: 'Usuário(s)',
-      count: 0,
-      fields:[{key:'email', value:'Email'}]
+      fields:[
+        {key:'email', value:'Email'},
+        {key:'name', value:'Name'}
+      ],
+      operators:[
+        {key:'equal', value:'Igual a'},
+        {key:'startswith', value:'Começa com'},
+        {key:'like', value:'Contém'}
+      ]
     }
   }
 
@@ -25,6 +32,7 @@ class UserList extends Component {
         <BoxUser
           key={index}
           id={item.id}
+          name={item.name}
           email={item.email}
           active={item.active}
           is_admin={item.is_admin}
@@ -39,20 +47,22 @@ class UserList extends Component {
 
           <BtnAddUser />
 
-          <BoxSearch fields={this.state.fields} />
-
-          <BoxSearchPerPage
-              count={this.state.count}
-              name={this.state.name}
+          <BoxSearch
+            fields={this.state.fields}
+            operators={this.state.operators}
           />
 
+          <BoxSearchPerPage
+            count={this.props.total}
+            name={this.state.name}
+          />
 
           <div className="columns">
               <div className="column is-one-quarter">
-                  <BoxFilterUser />
+                <BoxFilterUser />
               </div>
               <div className="column">
-                  {items}
+                {items}
               </div>
           </div>
 
