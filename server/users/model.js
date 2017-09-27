@@ -12,6 +12,9 @@ const User = new Schema({
   name: {type: String, required: true},
   email: {type: String, required: true, unique: true, lowercase: true},
   password: {type: String, required: true},
+  active: {type: Boolean, required: true, default: true},
+  is_admin: {type: Boolean, required: true, default: false},
+  is_superuser: {type: Boolean, required: true, default: false},
   created: {type: Date},
   updated: {type: Date, default: Date.now}
 })
