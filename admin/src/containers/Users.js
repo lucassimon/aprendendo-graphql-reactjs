@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Hero from '../components/Hero'
-import UserList from './UsersList'
+import UserList from './users/UsersList'
 
 
 class Users extends Component {
