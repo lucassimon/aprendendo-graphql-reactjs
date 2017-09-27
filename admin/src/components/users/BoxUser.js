@@ -6,21 +6,67 @@ const BoxUser = (props) => {
   return (
     <div className="box">
       <article className="media">
-        <div className="media-left">
-          <figure className="image is-64x64">
-            <img src="http://bulma.io/images/placeholders/128x128.png" alt="Image" />
-          </figure>
-        </div>
         <div className="media-content">
           <div className="content">
             <p>
               <strong>{props.email}</strong>
               <br />
-              Ativo: {props.active ? <i className="fa fa-check"></i> : <i className="fa fa-remove"></i>}
-              <br />
-              Admin: {props.is_admin ? <i className="fa fa-check"></i> : <i className="fa fa-remove"></i>}
-              <br />
-              Super usuário: {props.is_superuser ? <i className="fa fa-check"></i> : <i className="fa fa-remove"></i>}
+              <div className="field is-grouped">
+              {
+                props.active ?
+                <p className="control">
+                  <a className="button is-success is-small">
+                    Ativo
+                  </a>
+                </p>
+                :
+                <p className="control">
+                  <a className="button is-danger is-small">
+                    Não está ativo
+                  </a>
+                </p>
+              }
+
+              {
+                props.is_admin ?
+                <p className="control">
+                  <a className="button is-success is-small">
+                    Admin
+                  </a>
+                </p>
+                :
+                <p className="control">
+                  <a className="button is-danger is-small">
+                    Não é admin
+                  </a>
+                </p>
+              }
+
+              {
+                props.is_superuser ?
+                <p className="control">
+                  <a className="button is-success is-small">
+                    Super usuário
+                  </a>
+                </p>
+                :
+                <p className="control">
+                  <a className="button is-danger is-small">
+                    Não é Super usuário
+                  </a>
+                </p>
+              }
+              </div>
+            </p>
+          </div>
+        </div>
+        <div className="media-right">
+          <div className="field is-grouped">
+            <p className="control">
+              <a className="button is-warning">Editar</a>
+            </p>
+            <p className="control">
+              <a className="button is-success">Comissões</a>
             </p>
           </div>
         </div>
