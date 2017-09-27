@@ -21,7 +21,6 @@ class Dashboard extends Component {
     }
   }
 
-
   render() {
     return (
       <div>
@@ -32,7 +31,7 @@ class Dashboard extends Component {
               <div className="tile">
                 <div className="tile is-parent is-vertical">
                   <TileCountUser data={this.state.users} />
-                  <TileCountProduct data={this.state.users} />
+                  <TileCountProduct data={this.state.products} />
                 </div>
                 <TileGraphCommissioningProduct data={this.state.graph_comission_vs_product} />
               </div>
