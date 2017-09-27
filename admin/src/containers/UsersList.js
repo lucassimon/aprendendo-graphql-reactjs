@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import BoxUser from '../components/BoxUser'
+import BoxUser from '../components/users/BoxUser'
 
 class UserList extends Component {
 
