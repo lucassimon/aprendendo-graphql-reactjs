@@ -11,15 +11,22 @@ const BoxSearchPerPage = (props) => {
         </h4>
       </div>
       <div className="column">
-        <div className="control has-text-right">
-          <div className="select">
-            <select>
-              <option>Por página</option>
-              <option>10</option>
-              <option>20</option>
-              <option>30</option>
-              <option>40</option>
-            </select>
+        <div className="field has-addons">
+          <div className="control is-expanded">
+            <div className="select is-fullwidth">
+              <select name="perPage">
+
+                <option value='10'>10</option>
+                <option value='20'>20</option>
+                <option value='30'>30</option>
+                <option value='40'>40</option>
+              </select>
+            </div>
+          </div>
+          <div className="control">
+            <button type="submit" className="button is-info">
+              Por Página
+            </button>
           </div>
         </div>
       </div>
