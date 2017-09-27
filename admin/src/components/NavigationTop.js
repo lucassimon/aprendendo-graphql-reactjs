@@ -31,13 +31,13 @@ const NavigationTop = () => {
             Usuários
           </NavLink>
           <NavLink
-            to='/courses/'
+            to='/products/'
             exact
             strict
             className="nav-item is-tab"
             activeClassName="is-active"
           >
-            Cursos
+            Produtos
           </NavLink>
         </div>
       </nav>
