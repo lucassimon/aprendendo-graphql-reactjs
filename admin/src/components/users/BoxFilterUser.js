@@ -21,7 +21,7 @@ const BoxFilterUser = (props) => {
         É super usuário?
       </label>
       <div className="panel-block">
-        <button className="button is-primary is-outlined is-fullwidth">
+        <button className="button is-info is-outlined is-fullwidth">
           Limpar Filtros
         </button>
       </div>
