@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-
+import has from 'lodash/has';
+import isPlainObject from 'lodash/isPlainObject'
 // Services
 
 import UserService from '../../services/UserService'
@@ -48,6 +49,11 @@ class UserList extends Component {
 
   updateSearchParams(args) {
 
+    // verifica se é um objeto
+    if (!isPlainObject(args)) {
+      return
+    }
+
     // dica
     // const search_args = {
     //     ...(this.state.searchArgs || {}),
@@ -55,9 +61,38 @@ class UserList extends Component {
     // };
 
     let { search_args } = this.state;
-    search_args.field = args.field
-    search_args.operator = args.operator
-    search_args.query = args.query
+
+    if (has(args, 'field')) {
+      search_args.field = args.field
+    }
+
+    if (has(args, 'operator')) {
+      search_args.operator = args.operator
+    }
+
+    if (has(args, 'query')) {
+      search_args.query = args.query
+    }
+
+    if (has(args, 'per_page')) {
+      search_args.per_page = args.per_page
+    }
+
+    if (has(args, 'is_active')) {
+      search_args.is_active = args.is_active
+    }
+
+    if (has(args, 'is_admin')) {
+      search_args.is_admin = args.is_admin
+    }
+
+    if (has(args, 'is_superuser')) {
+      search_args.is_superuser = args.is_superuser
+    }
+
+    if (has(args, 'page')) {
+      search_args.page = args.page
+    }
 
     this.setState({ search_args }, () => this.search())
 
