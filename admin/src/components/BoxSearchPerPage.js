@@ -6,7 +6,7 @@ const BoxSearchPerPage = (props) => {
   return (
     <div className="columns">
       <div className="column is-two-thirds">
-        <h4 >
+        <h4 className='title is-4'>
           Listando {props.count} {props.name}
         </h4>
       </div>
