@@ -29,6 +29,18 @@ const UserService = {
       params.is_superuser = args.is_superuser
     }
 
+    if (args.operator) {
+      params.operator = args.operator
+    }
+
+    if (args.query) {
+      params.query = args.query
+    }
+
+    if (args.field) {
+      params.field = args.field
+    }
+
     return axios.get(url, {params: params}).then(checkStatus)
   }
 }
