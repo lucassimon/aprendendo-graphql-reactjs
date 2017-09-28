@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import FormErrors from './FormErrors'
+import BoxSearchErrors from './BoxSearchErrors'
 
 class BoxSearch extends Component {
 
@@ -10,7 +10,7 @@ class BoxSearch extends Component {
       query: '',
       field: this.props.fields[0].key,
       operator: this.props.operators[0].key,
-      formErrors: {query: ''},
+      errors: {query: ''},
       queryValid: false,
       formValid: false
     }
@@ -30,7 +30,7 @@ class BoxSearch extends Component {
   }
 
   validateField(fieldName, value) {
-    let fieldValidationErrors = this.state.formErrors
+    let fieldValidationErrors = this.state.errors
     let queryValid = this.state.queryValid
 
     switch(fieldName) {
@@ -48,7 +48,7 @@ class BoxSearch extends Component {
     }
     this.setState(
       {
-        formErrors: fieldValidationErrors,
+        errors: fieldValidationErrors,
         queryValid: queryValid
       },
       this.validateForm
@@ -154,7 +154,7 @@ class BoxSearch extends Component {
 
         </div>
         <div className="columns">
-          <FormErrors formErrors={this.state.formErrors} />
+          <BoxSearchErrors errors={this.state.errors} />
         </div>
       </div>
     )
