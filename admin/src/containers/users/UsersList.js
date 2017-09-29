@@ -10,6 +10,8 @@ import UserService from '../../services/UserService'
 import BoxUser from '../../components/users/BoxUser'
 import BoxSearch from '../../components/BoxSearch'
 import BoxSearchPerPage from '../../components/BoxSearchPerPage'
+import BoxSearchCountItems from '../../components/BoxSearchCountItems'
+import BoxRefreshResultsItems from '../../components/BoxRefreshResultsItems'
 import BoxFilterUser from '../../components/users/BoxFilterUser'
 import Paginate from '../../components/Paginate'
 
@@ -25,9 +27,9 @@ class UserList extends Component {
         query: null,
         operator: null,
         per_page: 10,
-        is_active: null,
-        is_admin: null,
-        is_superuser: null,
+        is_active: 3,
+        is_admin: 3,
+        is_superuser: 3,
         page: 1
       },
       users: [],
@@ -39,15 +41,40 @@ class UserList extends Component {
       operators:[
         {key:'equal', value:'Igual a'},
         {key:'startswith', value:'Começa com'},
-        {key:'like', value:'Contém'}
+        {key:'contains', value:'Contém'}
       ]
     }
 
     this.updateSearchParams = this.updateSearchParams.bind(this)
+    this.updatePerPage = this.updatePerPage.bind(this)
+    this.updateBoxFilter = this.updateBoxFilter.bind(this)
     this.search = this.search.bind(this)
   }
 
+  updatePerPage(args) {
+    let { search_args } = this.state
+
+    args = parseInt(args)
+
+    search_args.per_page = args
+
+    this.setState({ search_args }, () => this.search())
+  }
+
+  updateBoxFilter(name, args) {
+
+    let { search_args } = this.state
+
+    args = parseInt(args)
+
+    search_args[name] = args
+
+    this.setState({ search_args }, () => this.search())
+  }
+
   updateSearchParams(args) {
+
+    console.log(args)
 
     // verifica se é um objeto
     if (!isPlainObject(args)) {
@@ -100,10 +127,6 @@ class UserList extends Component {
 
   search() {
     console.log(this.state.search_args)
-    // TODO: Atraves do estado atual realizar a chamada no servidor
-  }
-
-  componentDidMount() {
     UserService.getUsersPerPage(this.state.search_args)
     .then(
       (data) => {
@@ -121,6 +144,10 @@ class UserList extends Component {
         console.log('tratar status code response', error)
       }
     )
+  }
+
+  componentDidMount() {
+    this.search()
   }
 
   render() {
@@ -149,14 +176,28 @@ class UserList extends Component {
             updateSearchParams={this.updateSearchParams}
           />
 
-          <BoxSearchPerPage
-            count={this.state.count_users}
-            name={this.state.name}
-          />
+          <div className="columns">
+
+            <BoxSearchCountItems
+              count={this.state.count_users}
+              name={this.state.name}
+            />
+
+            <BoxSearchPerPage updatePerPage={this.updatePerPage} />
+
+
+          </div>
+
+
 
           <div className="columns">
               <div className="column is-one-quarter">
-                <BoxFilterUser />
+                <BoxFilterUser
+                  active={this.state.search_args.is_active}
+                  admin={this.state.search_args.is_admin}
+                  superuser={this.state.search_args.is_superuser}
+                  updateBoxFilter={this.updateBoxFilter}
+                />
               </div>
               <div className="column">
                 {items}
