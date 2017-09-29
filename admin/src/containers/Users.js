@@ -6,10 +6,6 @@ import BtnAddUser from '../components/users/BtnAddUser'
 
 class Users extends Component {
 
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <div>
