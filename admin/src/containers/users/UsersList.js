@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import has from 'lodash/has';
-import isPlainObject from 'lodash/isPlainObject'
+
 // Services
 
 import UserService from '../../services/UserService'
@@ -11,7 +10,6 @@ import BoxUser from '../../components/users/BoxUser'
 import BoxSearch from '../../components/BoxSearch'
 import BoxSearchPerPage from '../../components/BoxSearchPerPage'
 import BoxSearchCountItems from '../../components/BoxSearchCountItems'
-import BoxRefreshResultsItems from '../../components/BoxRefreshResultsItems'
 import BoxFilterUser from '../../components/users/BoxFilterUser'
 import Paginate from '../../components/Paginate'
 
@@ -23,9 +21,9 @@ class UserList extends Component {
     this.state = {
       name: 'Usuário(s)',
       search_args: {
-        field: null,
-        query: null,
-        operator: null,
+        field: 'email',
+        query: '',
+        operator: 'equal',
         per_page: 10,
         is_active: 3,
         is_admin: 3,
@@ -45,88 +43,75 @@ class UserList extends Component {
       ]
     }
 
-    this.updateSearchParams = this.updateSearchParams.bind(this)
+    this.updateField = this.updateField.bind(this)
+    this.updateOperator = this.updateOperator.bind(this)
+    this.updateQuery = this.updateQuery.bind(this)
     this.updatePerPage = this.updatePerPage.bind(this)
     this.updateBoxFilter = this.updateBoxFilter.bind(this)
+    this.searchBox = this.searchBox.bind(this)
     this.search = this.search.bind(this)
   }
 
   updatePerPage(args) {
     let { search_args } = this.state
 
-    args = parseInt(args)
+    args = parseInt(args, 10)
 
     search_args.per_page = args
 
     this.setState({ search_args }, () => this.search())
   }
 
+  updateField(value) {
+    let { search_args } = this.state
+
+    console.log(value)
+
+    search_args.field = value
+
+    this.setState({ search_args })
+  }
+
+  updateOperator(value) {
+    let { search_args } = this.state
+
+    search_args.operator = value
+
+    this.setState({ search_args })
+  }
+
   updateBoxFilter(name, args) {
 
     let { search_args } = this.state
 
-    args = parseInt(args)
+    args = parseInt(args, 10)
 
     search_args[name] = args
 
     this.setState({ search_args }, () => this.search())
   }
 
-  updateSearchParams(args) {
-
-    console.log(args)
-
-    // verifica se é um objeto
-    if (!isPlainObject(args)) {
-      return
-    }
-
+  updateQuery(value) {
     // dica
     // const search_args = {
     //     ...(this.state.searchArgs || {}),
     //     ...(args || {})
     // };
 
-    let { search_args } = this.state;
+    let { search_args } = this.state
 
-    if (has(args, 'field')) {
-      search_args.field = args.field
-    }
+    search_args.query = value
 
-    if (has(args, 'operator')) {
-      search_args.operator = args.operator
-    }
-
-    if (has(args, 'query')) {
-      search_args.query = args.query
-    }
-
-    if (has(args, 'per_page')) {
-      search_args.per_page = args.per_page
-    }
-
-    if (has(args, 'is_active')) {
-      search_args.is_active = args.is_active
-    }
-
-    if (has(args, 'is_admin')) {
-      search_args.is_admin = args.is_admin
-    }
-
-    if (has(args, 'is_superuser')) {
-      search_args.is_superuser = args.is_superuser
-    }
-
-    if (has(args, 'page')) {
-      search_args.page = args.page
-    }
-
-    this.setState({ search_args }, () => this.search())
+    this.setState({ search_args })
 
   }
 
+  searchBox(e) {
+    e.preventDefault()
+    this.search()
+  }
+
   search() {
-    console.log(this.state.search_args)
     UserService.getUsersPerPage(this.state.search_args)
     .then(
       (data) => {
@@ -173,7 +158,13 @@ class UserList extends Component {
           <BoxSearch
             fields={this.state.fields}
             operators={this.state.operators}
-            updateSearchParams={this.updateSearchParams}
+            field={this.state.search_args.field}
+            operator={this.state.search_args.operator}
+            query={this.state.search_args.query}
+            updateField={this.updateField}
+            updateOperator={this.updateOperator}
+            updateQuery={this.updateQuery}
+            search={this.searchBox}
           />
 
           <div className="columns">
