@@ -16,9 +16,6 @@ router.get(
 ).get(
   '/page/:page/',
   Controller.find_per_page
-).post(
-  '/',
-  Controller.add
 )
 
 module.exports = router
