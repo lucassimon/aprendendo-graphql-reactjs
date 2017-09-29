@@ -88,20 +88,41 @@ exports.find_per_page = async (ctx, next) => {
 
   const filters = {}
 
-  if (ctx.query.is_active) {
-    filters.active = ctx.query.is_active
+  if (ctx.query.is_active === '1') {
+    filters.active = true
+  } else if (ctx.query.is_active === '2') {
+    filters.active = false
   }
 
-  if (ctx.query.is_admin) {
-    filters.is_admin = ctx.query.is_admin
+  if (ctx.query.is_admin === '1') {
+    filters.is_admin = true
+  } else if (ctx.query.is_admin === '2') {
+    filters.is_admin = false
   }
 
-  if (ctx.query.is_superuser) {
-    filters.is_superuser = ctx.query.is_superuser
+  if (ctx.query.is_superuser === '1') {
+    filters.is_superuser = true
+  } else if (ctx.query.is_superuser === '2') {
+    filters.is_superuser = false
   }
 
-  if (ctx.query.email) {
-    filters.email = ctx.query.email
+  if (ctx.query.field && ctx.query.operator && ctx.query.query) {
+
+    switch(ctx.query.operator) {
+      case 'equal':
+        filters[ctx.query.field] = ctx.query.query
+        break;
+      case 'startswith':
+        const regexp = new RegExp(`^${ctx.query.query}`);
+        filters[ctx.query.field] = regexp
+        break;
+      case 'contains':
+        filters[ctx.query.field] = {
+          "$regex": ctx.query.query,
+          "$options": "i"
+        }
+        break;
+    }
   }
 
   await User.paginate(filters, options).then(
