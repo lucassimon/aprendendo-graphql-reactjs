@@ -1,21 +1,31 @@
-let logger = require('koa-logger')
-let Router = require('koa-router')
-let Koa = require('koa')
-let bodyParser = require('koa-bodyparser')
-let app = module.exports = new Koa()
-let db = require('./configs/db')
-let courses = require('./courses/urls')
-let users = require('./users/urls.js')
+const logger = require('koa-logger')
+const Router = require('koa-router')
+const Koa = require('koa')
+const bodyParser = require('koa-bodyparser')
+const app = module.exports = new Koa()
+const db = require('./configs/db')
+const courses = require('./courses/urls')
+const users = require('./users/urls.js')
+
+// Cors
+const cors = require('kcors')
+let cors_whitelist = 'http://localhost:3000'
 
 // GraphQL
-let graphQL = require('graphql-server-koa').graphqlKoa
-let graphiQL = require('graphql-server-koa').graphiqlKoa
-let courseSchema = require('./courses/graphql/schema')
+const graphQL = require('graphql-server-koa').graphqlKoa
+const graphiQL = require('graphql-server-koa').graphiqlKoa
+const courseSchema = require('./graphql/schema')
 
 app.use(logger())
 app.use(bodyParser())
 
-let home = Router()
+if (process.env === 'production') {
+  cors_whitelist = 'https://graphqlcourse.herokuapp.com/'
+}
+
+app.use(cors({ origin: cors_whitelist }))
+
+const home = Router()
 
 home.use(async (ctx, next) => {
   console.log('This is a middleware start')
