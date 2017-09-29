@@ -77,16 +77,34 @@ exports.find_id = async (ctx, next) => {
 }
 
 exports.find_per_page = async (ctx, next) => {
-  let perPage = ctx.query.per_page || 10
-  let page = ctx.params.page || 1
-  let options = {
+  const perPage = parseInt(ctx.query.per_page) || 10
+  const page = parseInt(ctx.params.page) || 1
+  const options = {
     select: {password: 0},
     lean: true,
     page: page,
     limit: perPage
   }
 
-  await User.paginate({}, options).then(
+  const filters = {}
+
+  if (ctx.query.is_active) {
+    filters.active = ctx.query.is_active
+  }
+
+  if (ctx.query.is_admin) {
+    filters.is_admin = ctx.query.is_admin
+  }
+
+  if (ctx.query.is_superuser) {
+    filters.is_superuser = ctx.query.is_superuser
+  }
+
+  if (ctx.query.email) {
+    filters.email = ctx.query.email
+  }
+
+  await User.paginate(filters, options).then(
 
     (users) => {
       ctx.body = {
