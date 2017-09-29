@@ -1,164 +1,86 @@
-import React, { Component } from 'react'
-import BoxSearchErrors from './BoxSearchErrors'
-
-class BoxSearch extends Component {
-
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      query: '',
-      field: this.props.fields[0].key,
-      operator: this.props.operators[0].key,
-      errors: {query: ''},
-      queryValid: false,
-      formValid: false
-    }
-
-    this.handleInputChange = this.handleInputChange.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.validateField = this.validateField.bind(this)
-    this.validateForm = this.validateForm.bind(this)
-  }
-
-  componentDidMount() {
-  }
-
-  handleChange(event) {
-    this.setState({[event.target.name]: event.target.value});
-  }
-
-  validateField(fieldName, value) {
-    let fieldValidationErrors = this.state.errors
-    let queryValid = this.state.queryValid
-
-    switch(fieldName) {
-      case 'query':
-        queryValid = value.length >= 3;
-        if (!queryValid) {
-          fieldValidationErrors.query = ' A pesquisa precisa ter no minimo 3 caracteres'
-        } else {
-          fieldValidationErrors.query = ''
-        }
-
-        break;
-      default:
-        break;
-    }
-    this.setState(
-      {
-        errors: fieldValidationErrors,
-        queryValid: queryValid
-      },
-      this.validateForm
-    )
-  }
-
-  validateForm() {
-    this.setState({
-      formValid: this.state.queryValid
-    })
-  }
-
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-    this.setState({
-      [name]: value
-    },
-    () => this.validateField(name, value)
-    )
-  }
-
-  handleSubmit(event) {
-    event.preventDefault()
-    this.props.updateSearchParams(this.state)
-  }
-
-  render() {
+import React from 'react'
 
 
-    const fields = this.props.fields.map((item, index)=>{
-      return (
-        <option
-          key={index}
-          value={item.key}
-        >
-          {item.value}
-        </option>
-      )
-    })
-    const operators = this.props.operators.map((item, index)=>{
-      return (
-        <option
-          key={index}
-          value={item.key}
-        >
-          {item.value}
-        </option>
-      )
-    })
+const BoxSearch = (props) => {
+
+  const fields = props.fields.map((item, index)=>{
     return (
-      <div>
-        <div className="columns">
-          <div className="column is-12">
-            <form onSubmit={this.handleSubmit}>
-              <div className="field has-addons">
-                <p className="control">
-                  <span className="select">
-                    <select
-                      name='field'
-                      value={this.state.field}
-                      onChange={this.handleChange}
-                    >
-                      {fields}
-                    </select>
-
-                  </span>
-                </p>
-                <p className="control">
-                  <span className="select">
-                    <select
-                      name='operator'
-                      value={this.state.operator}
-                      onChange={this.handleChange}
-                    >
-                      {operators}
-                    </select>
-                  </span>
-                </p>
-                <p className="control is-expanded">
-                  <input
-                    className={"input " + (!this.state.queryValid ? 'is-danger' : 'is-success')}
-                    name='query'
-                    type="text"
-                    value={this.state.query}
-                    onChange={this.handleInputChange}
-                    placeholder="Informe um texto para pesquisa"
-                  />
-                </p>
-                <p className="control">
-                  <button
-                    type="submit"
-                    className="button is-info"
-                    disabled={!this.state.formValid}
-                  >
-                    Pesquisar
-                  </button>
-                </p>
-              </div>
-            </form>
-          </div>
-
-        </div>
-        <div className="columns">
-          <BoxSearchErrors errors={this.state.errors} />
-        </div>
-      </div>
+      <option
+        key={index}
+        value={item.key}
+      >
+        {item.value}
+      </option>
     )
-  }
+  })
+  const operators = props.operators.map((item, index)=>{
+    return (
+      <option
+        key={index}
+        value={item.key}
+      >
+        {item.value}
+      </option>
+    )
+  })
+
+  return (
+    <div>
+      <div className="columns">
+        <div className="column is-12">
+
+          <form onSubmit={(e) => props.search(e)}>
+            <div className="field has-addons">
+              <p className="control">
+                <span className="select">
+                  <select
+                    name='field'
+                    value={props.field}
+                    onChange={(event)=>props.updateField(event.target.value)}
+                  >
+                    {fields}
+                  </select>
+
+                </span>
+              </p>
+              <p className="control">
+                <span className="select">
+                  <select
+                    name='operator'
+                    value={props.operator}
+                    onChange={(event)=>props.updateOperator(event.target.value)}
+                  >
+                    {operators}
+                  </select>
+                </span>
+              </p>
+              <p className="control is-expanded">
+                <input
+                  className="input"
+                  name='query'
+                  type="text"
+                  value={props.query}
+                  onChange={(event)=>props.updateQuery(event.target.value)}
+                  placeholder="Informe um texto para pesquisa"
+                />
+              </p>
+              <p className="control">
+                <button
+                  type="submit"
+                  className="button is-info"
+
+                >
+                  Pesquisar
+                </button>
+              </p>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  )
 }
 
 export default BoxSearch
