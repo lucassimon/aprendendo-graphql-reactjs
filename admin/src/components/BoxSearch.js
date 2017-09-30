@@ -78,6 +78,19 @@ const BoxSearch = (props) => {
         </div>
 
       </div>
+      <div className="columns">
+        <div className="column is-12">
+          <div className="message is-info">
+            <div className="message-header">
+              Informação sobre a pesquisa
+            </div>
+            <div className="message-body">
+              Para a pesquisa inicial apague o campo texto acima e clique no botão <b>Pesquisar</b> novamente <br />
+              Ao <b> Limpar Filtros </b> os filtros voltam ao estado original e a pesquisa é feita novamente
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
   )
