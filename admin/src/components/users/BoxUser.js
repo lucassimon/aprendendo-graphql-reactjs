@@ -1,5 +1,20 @@
 import React from 'react';
 
+const actionButtons = (props) => {
+
+  return (
+    <div className="media-right">
+      <div className="field is-grouped">
+        <p className="control">
+          <a className="button is-warning">Editar</a>
+        </p>
+        <p className="control">
+          <a className="button is-success">Comissões</a>
+        </p>
+      </div>
+    </div>
+  )
+}
 
 const BoxUser = (props) => {
 
@@ -59,16 +74,7 @@ const BoxUser = (props) => {
 
           </div>
         </div>
-        <div className="media-right">
-          <div className="field is-grouped">
-            <p className="control">
-              <a className="button is-warning">Editar</a>
-            </p>
-            <p className="control">
-              <a className="button is-success">Comissões</a>
-            </p>
-          </div>
-        </div>
+
       </article>
     </div>
   )
