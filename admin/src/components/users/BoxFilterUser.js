@@ -149,7 +149,7 @@ const BoxFilterUser = (props) => {
           </aside>
         </label>
         <div className="panel-block">
-          <button className="button is-info is-outlined is-fullwidth">
+          <button className="button is-info is-outlined is-fullwidth" onClick={()=>{props.clearFilters()}}>
             Limpar Filtros
           </button>
         </div>
