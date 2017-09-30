@@ -7,7 +7,7 @@
     "test": "standard && NODE_ENV=test; jest --coverage",
     "test:watch": "NODE_ENV=test; jest --watch",
     "start": "node server.js",
-    "dev": "NODE_ENV=development;PORT=4000 node server.js"
+    "dev": "NODE_ENV=development;PORT=4000 nodemon server.js"
   },
   "author": "lucassrod@gmail.com",
   "license": "ISC",
@@ -42,6 +42,7 @@
     "koa-router": "^7.2.1",
     "lint-staged": "^4.2.3",
     "mongoose": "^4.11.1",
+    "nodemon": "^1.12.1",
     "prettier": "^1.7.1",
     "standard": "^10.0.2",
     "supertest": "^3.0.0",
