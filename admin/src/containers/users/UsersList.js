@@ -11,7 +11,11 @@ import BoxSearch from '../../components/BoxSearch'
 import BoxSearchPerPage from '../../components/BoxSearchPerPage'
 import BoxSearchCountItems from '../../components/BoxSearchCountItems'
 import BoxFilterUser from '../../components/users/BoxFilterUser'
-import Paginate from '../../components/Paginate'
+
+
+// 3 packages
+
+import ReactPaginate from 'react-paginate'
 
 class UserList extends Component {
 
@@ -30,6 +34,7 @@ class UserList extends Component {
         is_superuser: 3,
         page: 1
       },
+      pages: 1,
       users: [],
       count_users: 0,
       fields:[
@@ -49,6 +54,8 @@ class UserList extends Component {
     this.updatePerPage = this.updatePerPage.bind(this)
     this.updateBoxFilter = this.updateBoxFilter.bind(this)
     this.searchBox = this.searchBox.bind(this)
+    this.handlePageClick = this.handlePageClick.bind(this)
+    this.clearFilters = this.clearFilters.bind(this)
     this.search = this.search.bind(this)
   }
 
@@ -91,6 +98,16 @@ class UserList extends Component {
     this.setState({ search_args }, () => this.search())
   }
 
+  clearFilters() {
+    let { search_args } = this.state
+    search_args.is_active = 3
+    search_args.is_admin = 3
+    search_args.is_superuser = 3
+    this.setState({ search_args },() => {
+      this.search()
+    })
+  }
+
   updateQuery(value) {
     // dica
     // const search_args = {
@@ -111,7 +128,17 @@ class UserList extends Component {
     this.search()
   }
 
+  handlePageClick(data) {
+
+    let { search_args } = this.state
+    search_args.page = data.selected + 1
+    this.setState(search_args, () => {
+      this.search()
+    })
+  }
+
   search() {
+    console.log(this.state.search_args)
     UserService.getUsersPerPage(this.state.search_args)
     .then(
       (data) => {
@@ -119,7 +146,8 @@ class UserList extends Component {
         if (data.success) {
           this.setState({
             users: data.data,
-            count_users: data.total
+            count_users: data.total,
+            pages: data.pages
           })
         }
 
@@ -174,6 +202,10 @@ class UserList extends Component {
               name={this.state.name}
             />
 
+            <div className="column">
+              Exibindo {this.state.search_args.page} de {this.state.pages} páginas
+            </div>
+
             <BoxSearchPerPage updatePerPage={this.updatePerPage} />
 
 
@@ -188,6 +220,7 @@ class UserList extends Component {
                   admin={this.state.search_args.is_admin}
                   superuser={this.state.search_args.is_superuser}
                   updateBoxFilter={this.updateBoxFilter}
+                  clearFilters={this.clearFilters}
                 />
               </div>
               <div className="column">
@@ -195,7 +228,29 @@ class UserList extends Component {
               </div>
           </div>
 
-          <Paginate />
+          <div className="columns">
+            <div className="column is-half is-offset-one-quarter">
+
+                <ReactPaginate previousLabel={"previous"}
+                  nextLinkClassName={"pagination-next"}
+                  nextLabel={"Próximo"}
+                  previousLinkClassName={"pagination-previous"}
+                  previousLabel={"Anterior"}
+                  breakLabel={<a href="">...</a>}
+                  breakClassName={"pagination-ellipsis"}
+                  pageCount={this.state.pages}
+                  marginPagesDisplayed={2}
+                  pageRangeDisplayed={5}
+                  initialPage={0}
+                  disabledClassName={"disabled"}
+                  onPageChange={this.handlePageClick}
+                  containerClassName={"pagination-list"}
+                  pageLinkClassName={"pagination-link"}
+                  activeClassName={"is-current"}
+                />
+
+            </div>
+          </div>
         </div>
       </section>
     )
