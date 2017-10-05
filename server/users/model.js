@@ -2,7 +2,8 @@ let Mongoose = require('mongoose')
 let Schema = Mongoose.Schema
 let MongoosePaginate = require('mongoose-paginate')
 let Bcrypt = require('bcrypt')
-// let Joi = require('joi')
+
+// https://gist.github.com/dmh2000/1609820c17c5daf95298f54324360950
 
 const SALT_WORK_FACTOR = 10
 
@@ -60,22 +61,6 @@ User.pre(
     })
   }
 )
-
-// Cria um metodo para comparar senhas
-User.methods.comparePassword = function (candidatePassword, cb) {
-  let user = this
-  Bcrypt.compare(
-    candidatePassword,
-    user.password,
-    function (err, match) {
-      if (err) {
-        return cb(err)
-      }
-
-      cb(null, match)
-    }
-  )
-}
 
 // seta o plugin de paginação
 User.plugin(MongoosePaginate)
