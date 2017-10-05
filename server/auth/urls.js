@@ -1,14 +1,14 @@
 'use strict'
 
-let Router = require('koa-router')
-
-let auth = Router({
+const Router = require('koa-router')
+const Controller = require('./views')
+const route = Router({
   prefix: '/auth/'
 })
 
-auth.get(
+route.post(
   '/',
-  Controller.find
+  Controller.signin
 )
 
-module.exports = courses
+module.exports = route
