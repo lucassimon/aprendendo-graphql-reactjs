@@ -4,8 +4,13 @@ const Koa = require('koa')
 const bodyParser = require('koa-bodyparser')
 const app = module.exports = new Koa()
 const db = require('./configs/db')
+const jwt = require("./auth/jwt")
+
+
+// routes
 const courses = require('./courses/urls')
 const users = require('./users/urls.js')
+const auth = require('./auth/urls.js')
 
 // Cors
 const cors = require('kcors')
@@ -24,6 +29,7 @@ if (process.env === 'production') {
 }
 
 app.use(cors({ origin: cors_whitelist }))
+
 
 const home = Router()
 
@@ -54,12 +60,19 @@ if (process.env !== 'production') {
   )
 }
 
-// Utiliza as rotas
+// Utiliza as rotas liberadas
 app.use(
   home.routes()
 ).use(
   home.allowedMethods()
 ).use(
+  auth.routes()
+).use(
+  auth.allowedMethods()
+)
+// Utiliza as rotas seguras por jwt
+app.use(jwt.errorHandler()).use(jwt.jwt())
+app.use(
   courses.routes()
 ).use(
   courses.allowedMethods()
