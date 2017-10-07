@@ -1,30 +1,19 @@
 import React, { Component } from 'react'
-import Hero from '../components/Hero'
+import { Switch, Route } from 'react-router-dom'
 import UserList from './users/UsersList'
+import UserAdd from './users/UserAdd'
+import UserDetail from './users/UserDetail'
 
-import BtnAddUser from '../components/users/BtnAddUser'
-
-const addUser = (props) => {
+const Users = ({ match }) => {
   return (
-    <section className="">
-      <div className="container">
-        <BtnAddUser />
-      </div>
-    </section>
+    <Switch>
+      <Route exact path={`${match.url}/`} component={UserList} />
+      <Route path={`${match.url}/add/`} component={UserAdd}/>
+      <Route path={`${match.url}/:id/`} component={UserDetail}/>
+    </Switch>
   )
 }
 
-class Users extends Component {
-
-  render() {
-    return (
-      <div>
-        <Hero title="Usuários" subtitle="Listagem de usuários" />
-        <UserList />
-      </div>
-    )
-  }
-
-}
-
 export default Users
+
+
