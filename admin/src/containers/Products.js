@@ -1,12 +1,16 @@
 import React from 'react'
-import Hero from '../components/Hero'
+import { Switch, Route } from 'react-router-dom'
+import ProductList from './products/ProductList'
+import ProductAdd from './products/ProductAdd'
+import ProductDetail from './products/ProductDetail'
 
-
-const Courses = (match) => {
+const Courses = ({match}) => {
   return (
-    <div>
-      <Hero title="Produtos" subtitle="Listagem de produtos" />
-    </div>
+    <Switch>
+      <Route exact path={`${match.url}/`} component={ProductList} />
+      <Route path={`${match.url}/add/`} component={ProductAdd}/>
+      <Route path={`${match.url}/detail/`} component={ProductDetail}/>
+    </Switch>
   )
 }
 
