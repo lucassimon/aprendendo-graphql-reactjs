@@ -7,8 +7,8 @@ const TileCommissioningProcess = (props) => {
     <div className="tile is-parent">
       <article className="tile is-child notification is-success">
         <div className="content">
-          <p className="title">Comissões geradas</p>
-          <p className="subtitle">Últimas comissões por status</p>
+          <p className="title">Commissions</p>
+          <p className="subtitle">Last commissions approved</p>
           <div className="content">
 
           </div>
