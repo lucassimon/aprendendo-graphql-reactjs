@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-
+import { NavLink } from 'react-router-dom'
 // Services
 
 import UserService from '../../services/UserService'
 
 // Components
-
+import Hero from '../../components/Hero'
+import Breadcrumb from '../../components/Breadcrumb'
 import BoxUser from '../../components/users/BoxUser'
 import BoxSearch from '../../components/BoxSearch'
 import BoxSearchPerPage from '../../components/BoxSearchPerPage'
@@ -72,8 +73,6 @@ class UserList extends Component {
   updateField(value) {
     let { search_args } = this.state
 
-    console.log(value)
-
     search_args.field = value
 
     this.setState({ search_args })
@@ -138,7 +137,6 @@ class UserList extends Component {
   }
 
   search() {
-    console.log(this.state.search_args)
     UserService.getUsersPerPage(this.state.search_args)
     .then(
       (data) => {
@@ -180,9 +178,36 @@ class UserList extends Component {
     })
 
     return (
-      <section className="">
-        <div className="container">
 
+      <div className="">
+        <Hero title="Users" subtitle="All sellers" />
+        <section className="section">
+          <div className="container">
+            <div className="columns">
+              <div className="column is-three-quarters">
+                <Breadcrumb items={[
+                  {
+                    name: 'Dashboard',
+                    url: '/dashboard/',
+                  }, {
+                    name: 'Users',
+                    url: '/users/',
+                    active: true
+                  },
+                ]} />
+              </div>
+              <div className="column has-text-right">
+                <NavLink
+                  to="/dashboard/users/add/"
+                  className="button is-success"
+                >
+                  Add
+                </NavLink>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="">
           <BoxSearch
             fields={this.state.fields}
             operators={this.state.operators}
@@ -194,65 +219,75 @@ class UserList extends Component {
             updateQuery={this.updateQuery}
             search={this.searchBox}
           />
+        </section>
+        <section className="">
+          <div className="container">
+            <div className="columns">
 
-          <div className="columns">
+          <BoxSearchCountItems
+            count={this.state.count_users}
+            name={this.state.name}
+          />
 
-            <BoxSearchCountItems
-              count={this.state.count_users}
-              name={this.state.name}
-            />
-
-            <div className="column">
-              Exibindo {this.state.search_args.page} de {this.state.pages} páginas
-            </div>
-
-            <BoxSearchPerPage updatePerPage={this.updatePerPage} />
-
-
+          <div className="column">
+            Exibindo {this.state.search_args.page} de {this.state.pages} páginas
           </div>
 
+          <BoxSearchPerPage updatePerPage={this.updatePerPage} />
 
-
-          <div className="columns">
-              <div className="column is-one-quarter">
-                <BoxFilterUser
-                  active={this.state.search_args.is_active}
-                  admin={this.state.search_args.is_admin}
-                  superuser={this.state.search_args.is_superuser}
-                  updateBoxFilter={this.updateBoxFilter}
-                  clearFilters={this.clearFilters}
-                />
-              </div>
-              <div className="column">
-                {items}
-              </div>
-          </div>
-
-          <div className="columns">
-            <div className="column is-half is-offset-one-quarter">
-
-                <ReactPaginate previousLabel={"previous"}
-                  nextLinkClassName={"pagination-next"}
-                  nextLabel={"Próximo"}
-                  previousLinkClassName={"pagination-previous"}
-                  previousLabel={"Anterior"}
-                  breakLabel={<a href="">...</a>}
-                  breakClassName={"pagination-ellipsis"}
-                  pageCount={this.state.pages}
-                  marginPagesDisplayed={2}
-                  pageRangeDisplayed={5}
-                  initialPage={0}
-                  disabledClassName={"disabled"}
-                  onPageChange={this.handlePageClick}
-                  containerClassName={"pagination-list"}
-                  pageLinkClassName={"pagination-link"}
-                  activeClassName={"is-current"}
-                />
 
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        <section className="">
+          <div className="container">
+            <div className="columns">
+                <div className="column is-one-quarter">
+                  <BoxFilterUser
+                    active={this.state.search_args.is_active}
+                    admin={this.state.search_args.is_admin}
+                    superuser={this.state.search_args.is_superuser}
+                    updateBoxFilter={this.updateBoxFilter}
+                    clearFilters={this.clearFilters}
+                  />
+                </div>
+                <div className="column">
+                  {items}
+                </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="">
+          <div className="container">
+            <div className="columns">
+              <div className="column is-half is-offset-one-quarter">
+
+                  <ReactPaginate previousLabel={"previous"}
+                    nextLinkClassName={"pagination-next"}
+                    nextLabel={"Próximo"}
+                    previousLinkClassName={"pagination-previous"}
+                    previousLabel={"Anterior"}
+                    breakLabel={<a href="">...</a>}
+                    breakClassName={"pagination-ellipsis"}
+                    pageCount={this.state.pages}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    initialPage={0}
+                    disabledClassName={"disabled"}
+                    onPageChange={this.handlePageClick}
+                    containerClassName={"pagination-list"}
+                    pageLinkClassName={"pagination-link"}
+                    activeClassName={"is-current"}
+                  />
+
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
     )
   }
 }
