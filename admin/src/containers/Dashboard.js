@@ -23,23 +23,26 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div>
-        <Hero title="Dashboard" subtitle="Área principal" />
-        <div className="container">
-          <div className="tile is-ancestor">
-            <div className="tile is-vertical is-8">
-              <div className="tile">
-                <div className="tile is-parent is-vertical">
-                  <TileCountUser data={this.state.users} />
-                  <TileCountProduct data={this.state.products} />
+      <div className="">
+        <Hero title="Dashboard" subtitle="Overview" />
+
+        <section className="section">
+          <div className="container">
+            <div className="tile is-ancestor">
+              <div className="tile is-vertical is-8">
+                <div className="tile">
+                  <div className="tile is-parent is-vertical">
+                    <TileCountUser data={this.state.users} />
+                    <TileCountProduct data={this.state.products} />
+                  </div>
+                  <TileGraphCommissioningProduct data={this.state.graph_comission_vs_product} />
                 </div>
-                <TileGraphCommissioningProduct data={this.state.graph_comission_vs_product} />
+                <TileCommissioningAlert data={this.state.last_ten_comissioning_alerts} />
               </div>
-              <TileCommissioningAlert data={this.state.last_ten_comissioning_alerts} />
+              <TileCommissioningProcess data={this.state.last_ten_comissioning_process} />
             </div>
-            <TileCommissioningProcess data={this.state.last_ten_comissioning_process} />
           </div>
-        </div>
+        </section>
       </div>
     )
   }
