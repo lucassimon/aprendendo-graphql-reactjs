@@ -25,7 +25,7 @@ const BoxSearch = (props) => {
   })
 
   return (
-    <div>
+    <div className="container">
       <div className="columns">
         <div className="column is-12">
 
