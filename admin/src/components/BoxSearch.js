@@ -61,7 +61,7 @@ const BoxSearch = (props) => {
                   type="text"
                   value={props.query}
                   onChange={(event)=>props.updateQuery(event.target.value)}
-                  placeholder="Informe um texto para pesquisa"
+                  placeholder="Input a text to search"
                 />
               </p>
               <p className="control">
@@ -70,7 +70,7 @@ const BoxSearch = (props) => {
                   className="button is-info"
 
                 >
-                  Pesquisar
+                  Search
                 </button>
               </p>
             </div>
@@ -82,11 +82,12 @@ const BoxSearch = (props) => {
         <div className="column is-12">
           <div className="message is-info">
             <div className="message-header">
-              Informação sobre a pesquisa
+              About this search
             </div>
             <div className="message-body">
-              Para a pesquisa inicial apague o campo texto acima e clique no botão <b>Pesquisar</b> novamente <br />
-              Ao <b> Limpar Filtros </b> os filtros voltam ao estado original e a pesquisa é feita novamente
+              To do an initial search result, clear the input above and click on <b> Search </b> again.
+              <br />
+              When you click on <b> Clear Filters </b> button, the app back to initial state and do the search again
             </div>
           </div>
         </div>
