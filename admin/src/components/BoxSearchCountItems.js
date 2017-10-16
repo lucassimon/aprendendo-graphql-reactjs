@@ -4,7 +4,7 @@ const BoxSearchCountItems = ({count, name}) => {
   return (
     <div className="column is-half">
       <h4 className='title is-4'>
-        Total de {count} {name}
+        Total of {count} {name}
       </h4>
     </div>
   )
