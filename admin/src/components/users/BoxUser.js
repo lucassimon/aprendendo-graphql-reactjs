@@ -1,20 +1,5 @@
 import React from 'react';
-
-const actionButtons = (props) => {
-
-  return (
-    <div className="media-right">
-      <div className="field is-grouped">
-        <p className="control">
-          <a className="button is-warning">Editar</a>
-        </p>
-        <p className="control">
-          <a className="button is-success">Comissões</a>
-        </p>
-      </div>
-    </div>
-  )
-}
+import { NavLink } from 'react-router-dom'
 
 const BoxUser = (props) => {
 
@@ -23,20 +8,20 @@ const BoxUser = (props) => {
       <article className="media">
         <div className="media-content">
           <div className="content">
-              <strong>{props.name}, {props.email} </strong>
-              <br />
-              <div className="field is-grouped">
+            <strong>{props.name}, {props.email} </strong>
+            <br />
+            <div className="field is-grouped">
               {
                 props.active ?
                 <p className="control">
                   <a className="button is-success is-small">
-                    Ativo
+                    Active
                   </a>
                 </p>
                 :
                 <p className="control">
                   <a className="button is-danger is-small">
-                    Não está ativo
+                    Active
                   </a>
                 </p>
               }
@@ -51,7 +36,7 @@ const BoxUser = (props) => {
                 :
                 <p className="control">
                   <a className="button is-danger is-small">
-                    Não é admin
+                    Admin
                   </a>
                 </p>
               }
@@ -60,21 +45,37 @@ const BoxUser = (props) => {
                 props.is_superuser ?
                 <p className="control">
                   <a className="button is-success is-small">
-                    Super usuário
+                    Super user
                   </a>
                 </p>
                 :
                 <p className="control">
                   <a className="button is-danger is-small">
-                    Não é Super usuário
+                    Super user
                   </a>
                 </p>
               }
-              </div>
+            </div>
 
           </div>
         </div>
-
+        <div className="media-right">
+          <div className="field is-grouped">
+            {/*
+              <p className="control">
+                <a className="button is-warning">Editar</a>
+              </p>
+            */}
+            <p className="control">
+              <NavLink
+                to={`/dashboard/users/${props.id}`}
+                className="button is-success"
+              >
+                Comissions
+              </NavLink>
+            </p>
+          </div>
+        </div>
       </article>
     </div>
   )
