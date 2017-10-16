@@ -43,9 +43,9 @@ class UserList extends Component {
         {key:'name', value:'Name'}
       ],
       operators:[
-        {key:'equal', value:'Igual a'},
-        {key:'startswith', value:'Começa com'},
-        {key:'contains', value:'Contém'}
+        {key:'equal', value:'Equals to'},
+        {key:'startswith', value:'startswith'},
+        {key:'contains', value:'Contain'}
       ]
     }
 
@@ -158,7 +158,7 @@ class UserList extends Component {
   }
 
   componentDidMount() {
-    this.search()
+    // this.search()
   }
 
   render() {
@@ -224,17 +224,16 @@ class UserList extends Component {
           <div className="container">
             <div className="columns">
 
-          <BoxSearchCountItems
-            count={this.state.count_users}
-            name={this.state.name}
-          />
+              <BoxSearchCountItems
+                count={this.state.count_users}
+                name={this.state.name}
+              />
 
-          <div className="column">
-            Exibindo {this.state.search_args.page} de {this.state.pages} páginas
-          </div>
+              <div className="column">
+                Exibindo {this.state.search_args.page} de {this.state.pages} páginas
+              </div>
 
-          <BoxSearchPerPage updatePerPage={this.updatePerPage} />
-
+              <BoxSearchPerPage updatePerPage={this.updatePerPage} />
 
             </div>
           </div>
