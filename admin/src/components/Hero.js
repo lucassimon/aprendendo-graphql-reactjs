@@ -4,7 +4,7 @@ import React from 'react';
 const Hero = (props) => {
 
   return (
-    <section className="hero is-dark">
+    <section className="hero is-light">
       <div className="hero-body">
         <div className="container">
           <h1 className="title">
