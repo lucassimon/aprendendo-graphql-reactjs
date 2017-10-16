@@ -9,7 +9,7 @@ const BoxSearchPerPage = (props) => {
         <div className="control is-expanded">
           <div className="select is-fullwidth">
             <select name="perPage" onChange={(event)=>props.updatePerPage(event.target.value)}>
-              <option value='10'>10 por página</option>
+              <option value='10'>10 per page</option>
               <option value='20'>20</option>
               <option value='30'>30</option>
               <option value='40'>40</option>
