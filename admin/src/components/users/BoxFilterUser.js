@@ -5,15 +5,14 @@ const BoxFilterUser = (props) => {
 
   return (
     <div>
-
       <nav className="panel">
         <p className="panel-heading">
-          Filtros
+          Filters
         </p>
         <label className="panel-block">
           <aside className="menu">
             <p className="menu-label">
-              Está Ativo?
+              Is active?
             </p>
             <ul className="menu-list">
               <li>
@@ -26,7 +25,7 @@ const BoxFilterUser = (props) => {
                       checked={props.active === 1}
                       onChange={(e)=>{props.updateBoxFilter(e.target.name, e.target.value)}}
                     />
-                    Sim
+                    Yes
                   </label>
 
 
@@ -38,7 +37,7 @@ const BoxFilterUser = (props) => {
                       checked={props.active === 2}
                       onChange={(e)=>{props.updateBoxFilter(e.target.name, e.target.value)}}
                     />
-                    Não
+                    No
                   </label>
 
                   <label className="radio">
@@ -49,7 +48,7 @@ const BoxFilterUser = (props) => {
                       checked={props.active === 3}
                       onChange={(e)=>{props.updateBoxFilter(e.target.name, e.target.value)}}
                     />
-                    Indiferente
+                    Both
                   </label>
                 </div>
               </li>
@@ -59,7 +58,7 @@ const BoxFilterUser = (props) => {
         <label className="panel-block">
           <aside className="menu">
             <p className="menu-label">
-              É admin?
+              Is admin?
             </p>
             <ul className="menu-list">
               <li>
@@ -72,7 +71,7 @@ const BoxFilterUser = (props) => {
                       checked={props.admin === 1}
                       onChange={(e)=>{props.updateBoxFilter(e.target.name, e.target.value)}}
                     />
-                    Sim
+                    Yes
                   </label>
 
 
@@ -84,7 +83,7 @@ const BoxFilterUser = (props) => {
                       checked={props.admin === 2}
                       onChange={(e)=>{props.updateBoxFilter(e.target.name, e.target.value)}}
                     />
-                    Não
+                    No
                   </label>
 
                   <label className="radio">
@@ -95,7 +94,7 @@ const BoxFilterUser = (props) => {
                       checked={props.admin === 3}
                       onChange={(e)=>{props.updateBoxFilter(e.target.name, e.target.value)}}
                     />
-                    Indiferente
+                    Both
                   </label>
                 </div>
               </li>
@@ -105,7 +104,7 @@ const BoxFilterUser = (props) => {
         <label className="panel-block">
           <aside className="menu">
             <p className="menu-label">
-              É super usuário?
+              Is super user?
             </p>
             <ul className="menu-list">
               <li>
@@ -118,7 +117,7 @@ const BoxFilterUser = (props) => {
                       checked={props.superuser === 1}
                       onChange={(e)=>{props.updateBoxFilter(e.target.name, e.target.value)}}
                     />
-                    Sim
+                    Yes
                   </label>
 
 
@@ -130,7 +129,7 @@ const BoxFilterUser = (props) => {
                       checked={props.superuser === 2}
                       onChange={(e)=>{props.updateBoxFilter(e.target.name, e.target.value)}}
                     />
-                    Não
+                    No
                   </label>
 
                   <label className="radio">
@@ -141,7 +140,7 @@ const BoxFilterUser = (props) => {
                       checked={props.superuser === 3}
                       onChange={(e)=>{props.updateBoxFilter(e.target.name, e.target.value)}}
                     />
-                    Indiferente
+                    Both
                   </label>
                 </div>
               </li>
@@ -150,7 +149,7 @@ const BoxFilterUser = (props) => {
         </label>
         <div className="panel-block">
           <button className="button is-info is-outlined is-fullwidth" onClick={()=>{props.clearFilters()}}>
-            Limpar Filtros
+            Clear Filters
           </button>
         </div>
       </nav>
