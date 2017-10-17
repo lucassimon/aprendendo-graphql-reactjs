@@ -31,17 +31,17 @@ const NavigationTop = () => {
           </NavLink>
           <div className="navbar-item has-dropdown is-hoverable">
             <NavLink
-              to='/dashboard/users/'
+              to='/dashboard/sellers/'
               exact
               strict
               className="navbar-link"
               activeClassName="is-active"
             >
-              Users
+              Sellers
             </NavLink>
             <div className="navbar-dropdown">
               <NavLink
-                to='/dashboard/users/'
+                to='/dashboard/sellers/'
                 exact
                 strict
                 className="navbar-item"
@@ -50,7 +50,7 @@ const NavigationTop = () => {
                 Listar
               </NavLink>
               <NavLink
-                to='/dashboard/users/add/'
+                to='/dashboard/sellers/add/'
                 exact
                 strict
                 className="navbar-item"
