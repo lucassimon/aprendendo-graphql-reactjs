@@ -1,10 +1,8 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
-
 import Hero from '../../components/Hero'
 import Breadcrumb from '../../components/Breadcrumb'
 
-import ProductBox from '../../components/products/ProductBox'
+import ProductBox from './ProductBox'
 
 const ProductList = ({match, props}) => {
   return (

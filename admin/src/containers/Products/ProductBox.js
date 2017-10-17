@@ -2,10 +2,12 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 const ProductBox = (props) => {
-  let image = (<img src="https://placehold.it/1280x960" />)
+  let image = null
 
   if (props.image) {
-    image = (<img src="{props.image}" />)
+    image = (<img src="{props.image}" alt="The product is" />)
+  } else {
+    image = (<img src="https://placehold.it/1280x960" alt="The product is"/>)
   }
 
 

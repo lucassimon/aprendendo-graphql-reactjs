@@ -1,8 +1,8 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import ProductList from './products/ProductList'
-import ProductAdd from './products/ProductAdd'
-import ProductDetail from './products/ProductDetail'
+import ProductList from './ProductList'
+import ProductAdd from './ProductAdd'
+import ProductDetail from './ProductDetail'
 
 const Courses = ({match}) => {
   return (

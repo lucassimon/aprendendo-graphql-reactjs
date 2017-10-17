@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import Hero from '../../components/Hero'
 
 import Breadcrumb from '../../components/Breadcrumb'
@@ -21,7 +20,7 @@ const ProductDetail = ({match, props}) => {
                   url: '/dashboard/products/',
                 }, {
                   name: 'Product Name',
-                  url: '/dashboard/roducts/details/',
+                  url: '/dashboard/products/details/',
                   active: true
                 },
               ]} />
@@ -65,7 +64,7 @@ const ProductDetail = ({match, props}) => {
           <div className="columns">
             <div className="column is-6">
               <div className="image is-2by2">
-                <img src="https://placehold.it/1000x1000" />
+                <img src="https://placehold.it/1000x1000" alt="The product is" />
               </div>
             </div>
             <div className="column is-5 is-offset-1">
@@ -83,7 +82,7 @@ const ProductDetail = ({match, props}) => {
                   &nbsp; &nbsp;
                   <strong>41 Reviews</strong>
                   &nbsp; &nbsp;
-                  <a href="#">show all</a>
+                  <a href="">show all</a>
                 </p>
                 <br/>
                 <p>

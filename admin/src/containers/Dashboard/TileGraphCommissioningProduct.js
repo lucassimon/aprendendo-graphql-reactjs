@@ -9,7 +9,7 @@ const TileGraphCommissioningProduct = (props) => {
         <p className="title">Commissions</p>
         <p className="subtitle">Graph of products VS commission</p>
         <figure className="image is-4by3">
-          <img src="http://bulma.io/images/placeholders/640x480.png" />
+          <img src="http://bulma.io/images/placeholders/640x480.png" alt="Graph products Vs Commissioning" />
         </figure>
       </article>
     </div>

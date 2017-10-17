@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
-import Hero from '../components/Hero'
+import Hero from '../../components/Hero'
 
-import TileCountUser from '../components/dashboard/TileCountUser'
-import TileCountProduct from '../components/dashboard/TileCountProduct'
-import TileCommissioningAlert from '../components/dashboard/TileCommissioningAlert'
-import TileGraphCommissioningProduct from '../components/dashboard/TileGraphCommissioningProduct'
-import TileCommissioningProcess from '../components/dashboard/TileCommissioningProcess'
+import TileCountUser from './TileCountUser'
+import TileCountProduct from './TileCountProduct'
+import TileCommissioningAlert from './TileCommissioningAlert'
+import TileGraphCommissioningProduct from './TileGraphCommissioningProduct'
+import TileCommissioningProcess from './TileCommissioningProcess'
 
 class Dashboard extends Component {
   constructor(props) {

@@ -20,9 +20,9 @@ const BoxCommissionInfo = (props) => {
         </div>
       </div>
       <footer className="card-footer">
-        <a href="#" className="card-footer-item">View</a>
-        <a href="#" className="card-footer-item">Edit</a>
-        <a href="#" className="card-footer-item">Timeline</a>
+        <a href="" className="card-footer-item">View</a>
+        <a href="" className="card-footer-item">Edit</a>
+        <a href="" className="card-footer-item">Timeline</a>
       </footer>
     </div>
   )

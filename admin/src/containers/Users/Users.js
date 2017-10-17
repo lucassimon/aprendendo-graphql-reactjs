@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import UserList from './users/UsersList'
-import UserAdd from './users/UserAdd'
-import UserDetail from './users/UserDetail'
+import UserList from './UsersList'
+import UserAdd from './UserAdd'
+import UserDetail from './UserDetail'
 
 const Users = ({ match }) => {
   return (

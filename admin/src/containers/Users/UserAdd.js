@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom'
 const UserAdd = ({match, props}) => {
   return (
     <div className="">
-      <Hero title="Users" subtitle="Adds a seller" />
+      <Hero title="Sellers" subtitle="Adds a seller" />
       <section className="section">
         <div className="container">
           <div className="columns">
@@ -16,11 +16,11 @@ const UserAdd = ({match, props}) => {
                   name: 'Dashboard',
                   url: '/dashboard/',
                 }, {
-                  name: 'Users',
-                  url: '/dashboard/users/',
+                  name: 'Sellers',
+                  url: '/dashboard/sellers/',
                 }, {
                   name: 'Add',
-                  url: '/dashboard/users/add/',
+                  url: '/dashboard/sellers/add/',
                   active: true
                 },
               ]} />

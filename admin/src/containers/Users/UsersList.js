@@ -7,12 +7,12 @@ import UserService from '../../services/UserService'
 // Components
 import Hero from '../../components/Hero'
 import Breadcrumb from '../../components/Breadcrumb'
-import BoxUser from '../../components/users/BoxUser'
 import BoxSearch from '../../components/BoxSearch'
 import BoxSearchPerPage from '../../components/BoxSearchPerPage'
 import BoxSearchCountItems from '../../components/BoxSearchCountItems'
-import BoxFilterUser from '../../components/users/BoxFilterUser'
 
+import BoxFilterUser from './BoxFilterUser'
+import BoxUser from './BoxUser'
 
 // 3 packages
 
@@ -180,7 +180,7 @@ class UserList extends Component {
     return (
 
       <div className="">
-        <Hero title="Users" subtitle="All sellers" />
+        <Hero title="Sellers" subtitle="All sellers" />
         <section className="section">
           <div className="container">
             <div className="columns">
@@ -190,15 +190,15 @@ class UserList extends Component {
                     name: 'Dashboard',
                     url: '/dashboard/',
                   }, {
-                    name: 'Users',
-                    url: '/users/',
+                    name: 'Sellers',
+                    url: '/sellers/',
                     active: true
                   },
                 ]} />
               </div>
               <div className="column has-text-right">
                 <NavLink
-                  to="/dashboard/users/add/"
+                  to="/dashboard/sellers/add/"
                   className="button is-success"
                 >
                   Add
@@ -263,7 +263,7 @@ class UserList extends Component {
             <div className="columns">
               <div className="column is-half is-offset-one-quarter">
 
-                  <ReactPaginate previousLabel={"previous"}
+                  <ReactPaginate
                     nextLinkClassName={"pagination-next"}
                     nextLabel={"Próximo"}
                     previousLinkClassName={"pagination-previous"}

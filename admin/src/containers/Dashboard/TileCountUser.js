@@ -8,7 +8,7 @@ const TileCountUser = (props) => {
   return (
 
       <NavLink
-        to="/dashboard/users/"
+        to="/dashboard/sellers/"
         className="tile is-child"
       >
         <article className="notification is-primary">
