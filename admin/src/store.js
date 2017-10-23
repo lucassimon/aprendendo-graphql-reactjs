@@ -12,13 +12,15 @@ const routeMiddleware = routerMiddleware(history)
 
 const rootReducer = combineReducers({
   auth: authReducers.auth,
+  loginForm: authReducers.loginForm, 
+  logout: authReducers.logout,
+  profile: authReducers.profile,
   route: routerReducer
 })
 
 const sagaMiddleware = createSagaMiddleware()
 
 const myLogger = (store) => (next) => (action) => {
-  console.log('Logged action', action)
   next(action)
 }
 
