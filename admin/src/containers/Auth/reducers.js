@@ -1,45 +1,200 @@
 import {
-  SET_USER,
-  UNSET_USER,
-  SET_NAME,
-  SET_EMAIL,
-  SET_PASSWORD,
-  SET_PASSWORD_CONFIRM,
-  CLEAR_AUTH_FORM
+  SET_AUTH_TOKEN,
+  CLEAR_AUTH,
+  LOGIN_SET_EMAIL,
+  LOGIN_SET_PASSWORD,
+  LOGIN_CLEAR_FORM,
+  LOGIN_START,
+  LOGIN_ERROR,
+  LOGIN_SUCCESS,
+  LOGOUT_START,
+  LOGOUT_SUCCESS,
+  LOGOUT_ERROR,
+  LOGGEDIN_PROFILE_START,
+  LOGGEDIN_PROFILE_ERROR,
+  LOGGEDIN_PROFILE_SUCCESS,
+  SET_PROFILE_LOGGED_IN
+
 } from './actions'
 
 const authState = {
-  jwt: '',
+  token: '',
   refresh: '',
-  authenticated: false
+  authenticated: localStorage.getItem('admin-commissioning') ? true : false
 }
 
 const auth = (state = authState, action) => {
 
   switch (action.type) {
-    case SET_USER:
-      console.log(state, action.payload)
-      return { ...state, user: action.payload, redirect: false }
-    case UNSET_USER:
-      console.log(state, action.payload)
-      break;
+    case SET_AUTH_TOKEN:
+      return {
+        ...state,
+        token: action.payload.token,
+        refresh: action.payload.refresh,
+        authenticated: true
+      }
+    case CLEAR_AUTH: {
+      return {
+        ...state,
+        token: '',
+        refresh: '',
+        authenticated: false
+      }
+    }
     default:
       return state
   }
 }
 
-const login = (state, action) => {
+const loginState = {
+  email: { value: '' },
+  password: { value: '' },
+  loading: false,
+  error: false,
+  errors: null,
+}
 
+const loginForm = (state = loginState, action) => {
   switch (action.type) {
-    
+    case LOGIN_SET_EMAIL: {
+      return {
+        ...state,
+        email: Object.assign({}, { value: action.payload})
+      }
+    }
 
+    case LOGIN_SET_PASSWORD: {
+      return {
+        ...state,
+        password: Object.assign({}, { value: action.payload})
+      }
+    }
+
+    case LOGIN_CLEAR_FORM: {
+      return loginState
+    }
+
+    case LOGIN_START: {
+      return {
+        ...state,
+        loading: true,
+        error: false
+      }
+    }
+
+    case LOGIN_ERROR: {
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        errors: action.payload 
+      }
+    }
+
+    case LOGIN_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        errors: null
+      }
+    }
+
+    default: {
+      return state;
+    }
+
+  }
+  
+}
+
+export const logoutState = {
+  loading: false,
+  error: false,
+  errors: null
+}
+
+const logout  = (state = logoutState, action) => {
+  switch (action.type) {
+
+    case LOGOUT_START: {
+      return {
+        ...state,
+        loading: true
+      }
+    }
+
+    case LOGOUT_SUCCESS: {
+      return Object.assign({}, state, {
+        loading: false
+      })
+    }
+
+    case LOGOUT_ERROR: {
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        errors: action.payload
+      }
+    }
+
+    default: {
+      return state
+    }
   }
 }
 
-const logout = (state, action) => {
+const profileState = {
+  user: {},
+  permissions: {
+    admin: false
+  },
+  loading: false,
+  error: false,
+  errors: null
+}
+
+const profile = (state = profileState, action) => {
   switch (action.type) {
+
+    case LOGGEDIN_PROFILE_START: {
+      return Object.assign({}, state, {
+        loading: true
+      })
+    }
+
+    case LOGGEDIN_PROFILE_ERROR: {
+      return Object.assign({}, state, {
+        loading: false,
+        error: true,
+        errors: action.payload
+      })
+    }
     
+    case LOGGEDIN_PROFILE_SUCCESS: {
+      return Object.assign({}, state, {
+        loading: false,
+        error: false,
+        errors: null
+      })
+    }
+
+    case SET_PROFILE_LOGGED_IN: {
+      console.log(action)
+      return Object.assign({}, state, {
+        loading: false,
+        error: false,
+        errors: null,
+        user: action.payload,
+        permissions: action.payload.permission
+      })
+    }
+  
+    default: {
+      return state
+    }
   }
 }
 
-export default { auth }
+export default { auth, loginForm, logout, profile }
