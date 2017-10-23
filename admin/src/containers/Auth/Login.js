@@ -29,8 +29,7 @@ class Login extends Component {
 
   render() {
     return (
-
-      <section className="">
+      <section className="hero is-fullheight is-light">
         <section className="hero is-fullheight">
           <div className="hero-body">
             <div className="container has-text-centered">
@@ -48,19 +47,18 @@ class Login extends Component {
                     Login with Facebook
                   </a>
                 </p>
-                <p>
+                <p className="has-text-grey">
+                  <NavLink
+                    to='/'
+                    exact
+                    className="">
+                       Home
+                  </NavLink> &nbsp;·&nbsp;
                   <NavLink
                     to='/register'
                     exact
                     className="">
                        Register
-                  </NavLink> &nbsp;·&nbsp;
-                  <a href="../">Forgot Password</a> &nbsp;·&nbsp;
-                  <NavLink
-                    to='/'
-                    exact
-                    className="">
-                       Need Help?
                   </NavLink> &nbsp;·&nbsp;
                 </p>
               </div>
