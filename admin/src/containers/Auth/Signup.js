@@ -3,12 +3,12 @@ import { NavLink} from 'react-router-dom'
 
 
 const Register = () => (
-  <section className="hero is-fullheight is-dark is-bold">
+  <section className="hero is-fullheight is-success">
     <div className="hero-body">
       <div className="container">
         <div className="columns is-vcentered">
           <div className="column is-4 is-offset-4">
-            <h1 className="title">
+            <h1 className="title has-text-centered">
               Register an Account
             </h1>
             <div className="box">
@@ -41,13 +41,17 @@ const Register = () => (
             </div>
             <p className="has-text-centered">
               <NavLink
+                to='/'
+                exact
+                className="">
+                Home
+              </NavLink> &nbsp;·&nbsp;
+              <NavLink
                 to='/login'
                 exact
                 className="">
-                  Login
+                Login
               </NavLink>
-              |
-              <a href="">Need help?</a>
             </p>
           </div>
         </div>
