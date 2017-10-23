@@ -6,10 +6,11 @@ import UserDetail from './UserDetail'
 
 const Users = ({ match }) => {
   return (
+    
     <Switch>
-      <Route exact path={`${match.url}/`} component={UserList} />
-      <Route path={`${match.url}/add/`} component={UserAdd}/>
-      <Route path={`${match.url}/:id/`} component={UserDetail}/>
+      <Route exact path={`${match.url}`} component={UserList} />
+      <Route path={`${match.url}/detail`} component={UserDetail}/>
+      <Route path={`${match.url}/add`} component={UserAdd}/>
     </Switch>
   )
 }
