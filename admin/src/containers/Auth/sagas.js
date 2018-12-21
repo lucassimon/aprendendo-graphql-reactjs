@@ -29,7 +29,7 @@ function* loginFlow() {
   payload.email = loginForm.email.value
   payload.password = loginForm.password.value
 
-  let url = `${config[process.env.NODE_ENV].base}/auth/`
+  let url = `${config[process.env.NODE_ENV].base}/auth`
 
   yield put(loginStart())
   let response = {}
@@ -51,7 +51,7 @@ function* loginFlow() {
   }
 
   const { token, refresh } = authResp
-  
+
   const jwts = { token: token, refresh: refresh }
 
   yield put(setAuthToken(jwts))
@@ -61,8 +61,8 @@ function* loginFlow() {
   // TODO: Save in Local Storage
   const serializedState = JSON.stringify(jwts)
   localStorage.setItem('admin-commissioning', serializedState)
-  
-  url = `${config[process.env.NODE_ENV].base}/auth/me/`
+
+  url = `${config[process.env.NODE_ENV].base}/auth/me`
   const headers = {
     'Authorization': `Bearer ${token}`
   }
@@ -77,13 +77,13 @@ function* loginFlow() {
   }
 
   yield put(loggedInSuccess())
-  
+
   const { data } = response.data
 
   yield put(setProfileLoggedIn(data))
 
-  yield put(push('/dashboard/'))
-  
+  yield put(push('/dashboard'))
+
   return yield false
 }
 
@@ -97,7 +97,7 @@ function* logoutFlow() {
   } catch (error) {
     yield put(logoutError(error))
   }
-  
+
   return yield false
 }
 

@@ -20,7 +20,7 @@ import {
 const authState = {
   token: '',
   refresh: '',
-  authenticated: localStorage.getItem('admin-commissioning') ? true : false
+  authenticated: false
 }
 
 const auth = (state = authState, action) => {
@@ -87,7 +87,7 @@ const loginForm = (state = loginState, action) => {
         ...state,
         loading: false,
         error: true,
-        errors: action.payload 
+        errors: action.payload
       }
     }
 
@@ -105,7 +105,7 @@ const loginForm = (state = loginState, action) => {
     }
 
   }
-  
+
 }
 
 export const logoutState = {
@@ -148,7 +148,8 @@ const logout  = (state = logoutState, action) => {
 const profileState = {
   user: {},
   permissions: {
-    admin: false
+    admin: false,
+    active: false
   },
   loading: false,
   error: false,
@@ -171,7 +172,7 @@ const profile = (state = profileState, action) => {
         errors: action.payload
       })
     }
-    
+
     case LOGGEDIN_PROFILE_SUCCESS: {
       return Object.assign({}, state, {
         loading: false,
@@ -181,16 +182,15 @@ const profile = (state = profileState, action) => {
     }
 
     case SET_PROFILE_LOGGED_IN: {
-      console.log(action)
       return Object.assign({}, state, {
         loading: false,
         error: false,
         errors: null,
         user: action.payload,
-        permissions: action.payload.permission
+        permissions: action.payload.permissions
       })
     }
-  
+
     default: {
       return state
     }

@@ -87,6 +87,7 @@ if (process.env === 'test') {
 } else {
 
   // escuta a porta do servidor node.js
+  console.log(process.env.PORT)
 
   app.listen(
     process.env.PORT,

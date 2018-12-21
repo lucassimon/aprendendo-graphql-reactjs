@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import createSagaMiddleware from 'redux-saga';
 import { reducers as authReducers, sagas as authSagas } from './containers/Auth'
+import { reducers as dashboardReducers, sagas as dashboardSagas } from './containers/Dashboard'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import createHistory from 'history/createBrowserHistory'
 import { routerReducer, routerMiddleware } from 'react-router-redux'
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   loginForm: authReducers.loginForm, 
   logout: authReducers.logout,
   profile: authReducers.profile,
-  route: routerReducer
+  route: routerReducer,
+  dashboard: dashboardReducers.dashboard
 })
 
 const sagaMiddleware = createSagaMiddleware()
@@ -37,7 +39,8 @@ const store = createStore(
 
 function* rootSaga() {
   yield [
-    authSagas()
+    authSagas(),
+    dashboardSagas()
   ]
 }
 

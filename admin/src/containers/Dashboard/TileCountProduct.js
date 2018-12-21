@@ -1,23 +1,27 @@
-import React from 'react';
+import React from 'react'
+
 import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 const TileCountProduct = (props) => {
 
   return (
-    <NavLink
-        to="/dashboard/products/"
+
+      <NavLink
+        to="/dashboard/sellers/"
         className="tile is-child"
       >
-        <article className="notification is-warning">
-          <p className="title">Products</p>
-          <p className="subtitle">Quantity of products</p>
-          <div className="has-text-centered">
-            <p className="title" >{props.data}</p>
-          </div>
-        </article>
+        <div className="tile is-parent">
+          <article className="tile is-child box">
+            <p className="title">Products</p>
+            <p className="subtitle">{ props.userCount }</p>
+          </article>
+        </div>
       </NavLink>
   )
 
 }
+const mapStateToProps = (state) => ({ userCount: state.dashboard.sellersQty })
 
-export default TileCountProduct
+
+export default connect(mapStateToProps)(TileCountProduct);

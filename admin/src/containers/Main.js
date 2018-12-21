@@ -11,6 +11,7 @@ import Error404 from './404'
 function PrivateRoute ({component: Component, authed, active, admin, ...rest}) {
 
   const isValid = authed && active && admin
+
   return (
     <Route
       {...rest}
@@ -20,15 +21,15 @@ function PrivateRoute ({component: Component, authed, active, admin, ...rest}) {
     />
   )
 }
-  
+
 
 const Main = ({match, authed, active, admin}) => (
   <div>
     <NavigationTop />
     <Switch>
-      <PrivateRoute authed={authed} active={active} admin={admin} exact path={`${match.url}`} component={Dashboard}/>
-      <PrivateRoute authed={authed} active={active} admin={admin} path={`${match.url}/sellers`} component={Users} />
-      <PrivateRoute authed={authed} active={active} admin={admin} path={`${match.url}/products`} component={Products}/>
+      <Route authed={authed} active={active} admin={admin} exact path={`${match.url}`} component={Dashboard}/>
+      <Route authed={authed} active={active} admin={admin} path={`${match.url}/sellers`} component={Users} />
+      <Route authed={authed} active={active} admin={admin} path={`${match.url}/products`} component={Products}/>
       <Route component={Error404}/>
     </Switch>
   </div>
@@ -38,7 +39,7 @@ const Main = ({match, authed, active, admin}) => (
 const mapStateToProps = (state) => ({
   authed: state.auth.authenticated,
   active: state.profile.user.active,
-  admin: state.profile.permissions.admin,
+  admin: state.profile.permissions.admin
 })
 
 

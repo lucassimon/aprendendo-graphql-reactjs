@@ -1,5 +1,9 @@
 [Aprendendo Graphql/ReactJs](http://aprendendo-graphql-reactjs.surge.sh/)
 
+[Authentication Oauth and JWT](http://blog.grossman.io/ionic-jwt-auth-with-facebook-using-nodejs-part-1/)
+
+[Authentication Oauth and JWT - 2](http://blog.grossman.io/ionic-jwt-auth-with-facebook-using-nodejs-part-2-2/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

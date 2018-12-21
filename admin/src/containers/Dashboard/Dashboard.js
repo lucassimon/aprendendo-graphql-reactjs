@@ -3,7 +3,11 @@ import React, { Component } from 'react'
 import Hero from '../../components/Hero'
 
 import TileCountUser from './TileCountUser'
+import TileCountSeller from './TileCountSeller'
+import TileCountSupplier from './TileCountSupplier'
 import TileCountProduct from './TileCountProduct'
+import TileCountOrderSuccess from './TileCountOrderSuccess'
+import TileCountOrderWarning from './TileCountOrderWarning'
 import TileCommissioningAlert from './TileCommissioningAlert'
 import TileGraphCommissioningProduct from './TileGraphCommissioningProduct'
 import TileCommissioningProcess from './TileCommissioningProcess'
@@ -29,11 +33,17 @@ class Dashboard extends Component {
         <section className="section">
           <div className="container">
             <div className="tile is-ancestor">
+              <TileCountUser />
+              <TileCountSeller />
+              <TileCountSupplier />
+              <TileCountProduct />
+            </div>
+            <div className="tile is-ancestor">
               <div className="tile is-vertical is-8">
                 <div className="tile">
                   <div className="tile is-parent is-vertical">
-                    <TileCountUser data={this.state.users} />
-                    <TileCountProduct data={this.state.products} />
+                    <TileCountOrderSuccess data={this.state.users} />
+                    <TileCountOrderWarning data={this.state.products} />
                   </div>
                   <TileGraphCommissioningProduct data={this.state.graph_comission_vs_product} />
                 </div>

@@ -3,18 +3,18 @@ import { connect } from 'react-redux'
 import { setLoginEmail, setLoginPassword, submitLoginForm } from './actions'
 import classNames from 'classnames'
 
-const LoginForm = ({ loginForm, ...actions }) => {
-  
+const LoginForm = (props) => {
+
   const btnLoginClass = classNames({
     'button is-primary is-large': true,
-    'is-loading': loginForm.loading
+    'is-loading': props.loginForm.loading
   });
-  
+
   return (
-    <form onSubmit={actions.onFormSubmit}>
-      { loginForm.error &&
+    <form onSubmit={props.onFormSubmit}>
+      { props.loginForm.error &&
       <div className="notification is-danger">
-          {loginForm.errors}
+          {props.loginForm.errors}
       </div>
       }
       <div className="field">
@@ -23,10 +23,10 @@ const LoginForm = ({ loginForm, ...actions }) => {
             className="input"
             type="email"
             name="email"
-            value={loginForm.email.value}
+            value={props.loginForm.email.value}
             placeholder="Your Email"
             required
-            onChange={actions.onEmailChange}
+            onChange={props.onEmailChange}
           />
         </div>
       </div>
@@ -37,9 +37,9 @@ const LoginForm = ({ loginForm, ...actions }) => {
             className="input"
             type="password"
             name="password"
-            value={loginForm.password.value}
+            value={props.loginForm.password.value}
             placeholder="Your Password"
-            onChange={actions.onPasswordChange}
+            onChange={props.onPasswordChange}
           />
         </div>
       </div>

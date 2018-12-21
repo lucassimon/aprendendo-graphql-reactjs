@@ -13,7 +13,7 @@ const TileCountUser = (props) => {
       >
         <div className="tile is-parent">
           <article className="tile is-child box">
-            <p className="title">Users</p>
+            <p className="title">Suppliers</p>
             <p className="subtitle">{ props.userCount }</p>
           </article>
         </div>
